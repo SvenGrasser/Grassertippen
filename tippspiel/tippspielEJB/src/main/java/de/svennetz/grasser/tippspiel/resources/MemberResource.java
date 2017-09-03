@@ -21,10 +21,9 @@ public class MemberResource {
 	private IMemberSummaryBean memberSummaryBean;
 	
 	@GET
-	@Path("all")
 	@Produces({MediaType.APPLICATION_JSON})
-	public List<MemberSummary> getMemberResultOverviewList() {		
-		return memberSummaryBean.getMemberResultOverviewList();
+	public List<MemberSummary> getMemberSummaryList() {		
+		return memberSummaryBean.getMemberSummaryList();
 	}
 
 }

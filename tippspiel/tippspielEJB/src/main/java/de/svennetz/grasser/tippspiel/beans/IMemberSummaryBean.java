@@ -6,5 +6,5 @@ import de.svennetz.grasser.tippspiel.Member.MemberSummary;
 
 
 public interface IMemberSummaryBean {
-	List<MemberSummary> getMemberResultOverviewList();
+	List<MemberSummary> getMemberSummaryList();
 }

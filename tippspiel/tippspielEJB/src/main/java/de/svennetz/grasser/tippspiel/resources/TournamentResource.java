@@ -21,7 +21,6 @@ public class TournamentResource {
 	private ITournamentBean tournamentBean;
 	
 	@GET
-	@Path("all")
 	@Produces({MediaType.APPLICATION_JSON})
 	public List<Tournament> getTournamentList() {		
 		return tournamentBean.getTournaments();

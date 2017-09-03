@@ -33,7 +33,7 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 	
 	
 	@Override
-	public List<MemberSummary> getMemberResultOverviewList() {
+	public List<MemberSummary> getMemberSummaryList() {
 		List<Member> members = memberBean.getMembers();
 		List<Tournament> tournaments = tournamentBean.getTournaments();
 		
@@ -62,6 +62,7 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 	}
 	
 	private void fillMemberSummary(MemberSummary memberSummary, Member m, List<TournamentResult> tournamentResultList) {
+		memberSummary.setId(m.getId());
 		memberSummary.setName(m.getName());
 		
 		if (m.getId() == tournamentResultList.get(0).getMemberId()) {
