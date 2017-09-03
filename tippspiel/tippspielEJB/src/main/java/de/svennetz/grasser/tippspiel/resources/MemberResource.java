@@ -9,8 +9,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import de.svennetz.grasser.tippspiel.beans.IMemberResultOverviewBean;
-import de.svennetz.grasser.tippspiel.entities.Member;
+import de.svennetz.grasser.tippspiel.Member.MemberSummary;
+import de.svennetz.grasser.tippspiel.beans.IMemberSummaryBean;
 
 
 @Path("members")
@@ -18,13 +18,13 @@ import de.svennetz.grasser.tippspiel.entities.Member;
 public class MemberResource {
 	
 	@EJB
-	private IMemberResultOverviewBean memberResultOverviewBean;
+	private IMemberSummaryBean memberSummaryBean;
 	
 	@GET
 	@Path("all")
 	@Produces({MediaType.APPLICATION_JSON})
-	public List<Member> getMemberResultOverviewList() {		
-		return memberResultOverviewBean.getMemberResultOverviewList();
+	public List<MemberSummary> getMemberResultOverviewList() {		
+		return memberSummaryBean.getMemberResultOverviewList();
 	}
 
 }
