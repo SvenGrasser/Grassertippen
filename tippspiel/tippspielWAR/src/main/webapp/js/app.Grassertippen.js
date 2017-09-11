@@ -3,8 +3,8 @@ var app = angular.module('appTippspiel', []);
 app.controller('start', function($scope, $http) {
 	load($scope, $http);
 	
-	$scope.showDetails = function(item) {
-		$scope.detailMemberSummary = item.name;		
+	$scope.showDetails = function(memberSummary) {
+		showMemberSummaryDetails($scope, $http, memberSummary);
 	}
 });
 
@@ -26,4 +26,11 @@ function load($scope, $http) {
 	.then(function(responseTournament) {
 		$scope.tournaments = responseTournament.data;	
 	})	
+}
+
+function showMemberSummaryDetails($scope, $http, memberSummary) {
+	$http.get("/tippspiel/api/v1/members/" + memberSummary.member.id)
+	.then(function(response) {
+		$scope.memberDetails = response.data;		
+	});
 }

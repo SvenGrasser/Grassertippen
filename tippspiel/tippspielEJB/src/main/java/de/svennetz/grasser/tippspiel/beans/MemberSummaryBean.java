@@ -29,8 +29,7 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 	private final int Score_Gold = 5;
 	private final int Score_Silver = 3;
 	private final int Score_Bronze = 1;
-	
-	
+		
 	
 	@Override
 	public List<MemberSummary> getMemberSummaryList() {
@@ -39,7 +38,7 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 		
 		ArrayList<MemberSummary> memberSummaries = new ArrayList<MemberSummary>();
 		for (Member member : members) {
-			MemberSummary memberSummary = new MemberSummary();
+			MemberSummary memberSummary = new MemberSummary(member);
 			memberSummaries.add(memberSummary);
 			fillMemberSummaries(memberSummary, member, tournaments);
 		}
@@ -62,9 +61,7 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 	}
 	
 	private void fillMemberSummary(MemberSummary memberSummary, Member m, List<TournamentResult> tournamentResultList) {
-		memberSummary.setId(m.getId());
-		memberSummary.setName(m.getName());
-		
+				
 		if (m.getId() == tournamentResultList.get(0).getMemberId()) {
 			int value = memberSummary.getGold() == null ? 0 : memberSummary.getGold();
 			memberSummary.setGold(value + 1);

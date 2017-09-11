@@ -7,4 +7,5 @@ import de.svennetz.grasser.tippspiel.entities.Member;
 public interface IMemberBean {
 	
 	List<Member> getMembers();
+	Member getMember(int id);
 }

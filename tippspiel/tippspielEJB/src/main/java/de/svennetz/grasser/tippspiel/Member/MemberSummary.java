@@ -1,28 +1,27 @@
 package de.svennetz.grasser.tippspiel.Member;
 
+import de.svennetz.grasser.tippspiel.entities.Member;
+
 public class MemberSummary {
-
-
-	private Integer Id;
-	private String name;
+	private Member member;	
+	
 	private Integer gold;
 	private Integer silver;
 	private Integer bronze;
 	private int score;
 	
+	public MemberSummary(Member member) {
+		this.setMember(member);
+	}
+	
 
-	public Integer getId() {
-		return Id;
+	public Member getMember() {
+		return member;
 	}
-	public void setId(Integer id) {
-		Id = id;
+	public void setMember(Member member) {
+		this.member = member;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	public Integer getGold() {
 		return gold;
 	}
@@ -46,6 +45,5 @@ public class MemberSummary {
 	}
 	public void setScore(int score) {
 		this.score = score;
-	}
-	
+	}	
 }
