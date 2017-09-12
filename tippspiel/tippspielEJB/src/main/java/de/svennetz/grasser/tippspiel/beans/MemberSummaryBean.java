@@ -63,16 +63,13 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 	private void fillMemberSummary(MemberSummary memberSummary, Member m, List<TournamentResult> tournamentResultList) {
 				
 		if (m.getId() == tournamentResultList.get(0).getMemberId()) {
-			int value = memberSummary.getGold() == null ? 0 : memberSummary.getGold();
-			memberSummary.setGold(value + 1);
+			memberSummary.setGold(memberSummary.getGold() + 1);
 			memberSummary.setScore(memberSummary.getScore() + Score_Gold);
 		} else if (m.getId() == tournamentResultList.get(1).getMemberId()) {
-			int value = memberSummary.getSilver() == null ? 0 : memberSummary.getSilver();
-			memberSummary.setSilver(value + 1);
+			memberSummary.setSilver(memberSummary.getSilver() + 1);
 			memberSummary.setScore(memberSummary.getScore() + Score_Silver);
 		} else if (m.getId() == tournamentResultList.get(2).getMemberId()) {
-			int value = memberSummary.getBronze() == null ? 0 : memberSummary.getBronze();
-			memberSummary.setBronze(value + 1);
+			memberSummary.setBronze(memberSummary.getBronze() + 1);
 			memberSummary.setScore(memberSummary.getScore() + Score_Bronze);
 		}
 	}

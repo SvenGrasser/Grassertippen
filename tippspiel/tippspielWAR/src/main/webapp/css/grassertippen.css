@@ -1,0 +1,7 @@
+.panel-heading:active {
+background:darkred;
+}
+
+.panel-body:active {
+background:darkred;
+}

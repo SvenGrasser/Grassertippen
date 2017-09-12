@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html data-ng-app="appTippspiel" data-ng-controller="start">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tippspiel Grassertippen</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/grassertippen.css">
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
@@ -10,7 +12,6 @@
 </head>
 <body onload="load()">
 	<div class="jumbotron">
-
 		<!-- TITLE -->
 		<div class="container">
 			<div class="row">
@@ -20,79 +21,70 @@
 				</div>
 			</div>
 		</div>
-
-
 	</div>
 
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-8">
-				<!-- MemberSummary-TABLE -->
-				<table class="table table-hover table-striped">
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Gold</th>
-							<th>Silber</th>
-							<th>Bronze</th>
-							<th>Score</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr data-ng-repeat="memberSummary in memberSummaries" data-ng-click="showDetails(memberSummary)">
-							<td>{{memberSummary.member.name}}</td>
-							<td>{{memberSummary.gold}}</td>
-							<td>{{memberSummary.silver}}</td>
-							<td>{{memberSummary.bronze}}</td>
-							<td>{{memberSummary.score}}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
 			<div class="col-sm-4">
-				<!-- TOURNAMENT-TABLE -->
-				<table class="table table-hover table-striped">
-					<thead>
-						<tr>
-							<th>Wettbewerbe</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr data-ng-repeat="tournament in tournaments">
-							<td>{{tournament.descriptionShort}}</td>
-						</tr>
-					</tbody>
-				</table>
+				<div data-ng-repeat="memberSummary in memberSummaries"
+					data-ng-click="showDetails(memberSummary)">
+					<div class="panel-group">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<label>{{memberSummary.member.name}}</label> - Gesamtpunktzahl:
+								{{memberSummary.score}}
+							</div>
+							<div class="panel-body">
+								Gold: <label>{{memberSummary.gold}}</label>
+								Silber: <label>{{memberSummary.silver}}</label>
+								Bronze: <label>{{memberSummary.bronze}}</label>
+							</div>
+						</div>
+					</div>
+
+				</div>
 			</div>
-		</div>
-		
-	</div>
-	
-	<div class="container">
-		<div class="row">
+
 			<div class="col-sm-8">
-				<!-- DETAILS-TABLE -->
-				<table class="table table-hover table-striped">
-					<thead>
-						<tr>
-							<th>Tournament</th>
-							<th>Score</th>
-							<th>Position</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr data-ng-repeat="memberDetails in memberDetails">
-							<td>{{memberDetails.tournament.descriptionShort}}</td>
-							<td>{{memberDetails.score}}</td>
-							<td>{{memberDetails.position}}</td>
-						</tr>
-					</tbody>
-				</table>
+				<div class="panel-group">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<label>Details: {{activeMember}}</label>
+						</div>
+						<div class="panel-body">
+							<!-- DETAILS-TABLE -->
+							<table class="table table-hover table-striped">
+								<thead>
+									<tr>
+										<th></th>
+										<th>Punkte</th>
+										<th>Pos</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-ng-repeat="memberDetails in memberDetails">
+										<td>{{memberDetails.tournament.descriptionShort}}</td>
+										<td>{{memberDetails.score}}</td>
+										<td>{{memberDetails.position}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
+
+
 		</div>
-		
+
 	</div>
 
+	<!-- FOOTER -->
+	<div class="container">
+		<div class="row">
+			<div  class="col-sm-12">{{tournaments}}</div>
+		</div>
+	</div>
 
 </body>
 </html>

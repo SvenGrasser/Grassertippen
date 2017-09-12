@@ -11,8 +11,10 @@ app.controller('start', function($scope, $http) {
 function load($scope, $http) {
 	$scope.title = "Tippspiel Grassertippen";	
 	$scope.detailMemberSummary = "";
-	$scope.memberSummaries = [];
+	$scope.memberSummaries = [];		
+	$scope.detailsHidden = true;
 	$scope.isLoading = false;
+	$scope.activeMember = null;
 	
 	$scope.isLoading = true;
 	$http.get("/tippspiel/api/v1/members?" + Math.random())
@@ -24,13 +26,22 @@ function load($scope, $http) {
 	
 	$http.get("/tippspiel/api/v1/tournaments?" + Math.random())
 	.then(function(responseTournament) {
-		$scope.tournaments = responseTournament.data;	
+		var result = "Wettbewerbe: "; 
+		responseTournament.data.forEach(
+			    function combineTournaments(value) { 
+			    	result = result.concat(value.descriptionShort);
+			    	result = result.concat("|");
+			    }
+			);
+		$scope.tournaments = result;
 	})	
 }
 
 function showMemberSummaryDetails($scope, $http, memberSummary) {
-	$http.get("/tippspiel/api/v1/members/" + memberSummary.member.id)
+	$scope.activeMember = memberSummary.member.name;
+	$http.get("/tippspiel/api/v1/members/" + memberSummary.member.id + "?"  + Math.random())
 	.then(function(response) {
 		$scope.memberDetails = response.data;		
+		$scope.detailsHidden = false;
 	});
 }
