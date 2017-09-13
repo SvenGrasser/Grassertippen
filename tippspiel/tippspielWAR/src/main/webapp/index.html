@@ -17,7 +17,7 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<h1>Tippspiel Grassertippen</h1>
-					<h3>"Alle Tipper"</h3>
+					<h3>Statistik</h3>
 				</div>
 			</div>
 		</div>
@@ -25,9 +25,8 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-4">
-				<div data-ng-repeat="memberSummary in memberSummaries"
-					data-ng-click="showDetails(memberSummary)">
+			<div class="col-sm-12">
+				<div data-ng-repeat="memberSummary in memberSummaries">
 					<div class="panel-group">
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -35,9 +34,29 @@
 								{{memberSummary.score}}
 							</div>
 							<div class="panel-body">
-								Gold: <label>{{memberSummary.gold}}</label>
-								Silber: <label>{{memberSummary.silver}}</label>
-								Bronze: <label>{{memberSummary.bronze}}</label>
+								Gold: <label>{{memberSummary.gold}}</label> Silber: <label>{{memberSummary.silver}}</label>
+								Bronze: <label>{{memberSummary.bronze}}</label></br>
+								<button type="button" class="btn btn-info"
+									data-toggle="collapse" data-target="#demo{{$index + 1}}"
+									data-ng-click="showDetails(memberSummary)">Details</button>
+								<div id="demo{{$index + 1}}" class="collapse">
+									<table class="table table-hover table-striped">
+										<thead>
+											<tr>
+												<th>Wettbewerb</th>
+												<th>Punkte</th>
+												<th>Pos</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr data-ng-repeat="memberDetails in memberDetails">
+												<td>{{memberDetails.tournament.descriptionShort}}</td>
+												<td>{{memberDetails.score}}</td>
+												<td>{{memberDetails.position}}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -45,46 +64,22 @@
 				</div>
 			</div>
 
-			<div class="col-sm-8">
-				<div class="panel-group">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<label>Details: {{activeMember}}</label>
-						</div>
-						<div class="panel-body">
-							<!-- DETAILS-TABLE -->
-							<table class="table table-hover table-striped">
-								<thead>
-									<tr>
-										<th></th>
-										<th>Punkte</th>
-										<th>Pos</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr data-ng-repeat="memberDetails in memberDetails">
-										<td>{{memberDetails.tournament.descriptionShort}}</td>
-										<td>{{memberDetails.score}}</td>
-										<td>{{memberDetails.position}}</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
 		</div>
 
 	</div>
 
 	<!-- FOOTER -->
-	<div class="container">
-		<div class="row">
-			<div  class="col-sm-12">{{tournaments}}</div>
+	<footer class="bd-footer text-muted">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">{{tournaments}}</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">Berechnungsgrundlage der
+					Gesamtpunktzahl: Gold = 5 Punkte|Silber = 3 Punkte|Bronze = 1 Punkt</div>
+			</div>
 		</div>
-	</div>
+	</footer>
 
 </body>
 </html>

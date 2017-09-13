@@ -1,7 +1,4 @@
-.panel-heading:active {
-background:darkred;
-}
-
-.panel-body:active {
-background:darkred;
+.btn-info, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: darkred !important;
+    border-color: darkred !important;
 }

@@ -14,7 +14,6 @@ function load($scope, $http) {
 	$scope.memberSummaries = [];		
 	$scope.detailsHidden = true;
 	$scope.isLoading = false;
-	$scope.activeMember = null;
 	
 	$scope.isLoading = true;
 	$http.get("/tippspiel/api/v1/members?" + Math.random())
@@ -38,7 +37,6 @@ function load($scope, $http) {
 }
 
 function showMemberSummaryDetails($scope, $http, memberSummary) {
-	$scope.activeMember = memberSummary.member.name;
 	$http.get("/tippspiel/api/v1/members/" + memberSummary.member.id + "?"  + Math.random())
 	.then(function(response) {
 		$scope.memberDetails = response.data;		
