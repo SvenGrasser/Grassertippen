@@ -1,4 +1,15 @@
 .btn-info, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-    background-color: darkred !important;
-    border-color: darkred !important;
+    background-color: #808080!important;
+    border-color: #808080 !important;
+}
+
+#mainFooter {
+    background-color: #f9f9f9!important;	
+    border-style: solid none none none;
+    border-width:1px; 
+    border-color: #ddd;
+}
+
+#footerBranding {
+	font-weight:bold;	
 }

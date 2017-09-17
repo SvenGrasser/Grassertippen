@@ -11,17 +11,27 @@
 <script type="text/javascript" src="js/app.Grassertippen.js"></script>
 </head>
 <body onload="load()">
-	<div class="jumbotron">
+	<div class="page-header">
 		<!-- TITLE -->
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
 					<h1>Tippspiel Grassertippen</h1>
-					<h3>Statistik</h3>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="index.html">Home</a></li>
+				<li><a href="links.html">Links</a></li>
+				<li><a href="about.html">Über uns</a></li>
+			</ul>
+		</div>
+	</nav>
+
 
 	<div class="container">
 		<div class="row">
@@ -69,8 +79,11 @@
 	</div>
 
 	<!-- FOOTER -->
-	<footer class="bd-footer text-muted">
+	<footer id="mainFooter" class="bd-footer text-muted">
 		<div class="container">
+			<div id="footerBranding" class="row">
+				<div class="col-sm-12">made by svennetz.de</div>
+			</div>
 			<div class="row">
 				<div class="col-sm-12">{{tournaments}}</div>
 			</div>
