@@ -1,15 +1,17 @@
-.btn-info, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-    background-color: #808080!important;
-    border-color: #808080 !important;
+.btn-info, .btn-primary:hover, .btn-primary:active, .btn-primary:visited
+	{
+	background-color: #808080 !important;
+	border-color: #808080 !important;
 }
 
 #mainFooter {
-    background-color: #f9f9f9!important;	
-    border-style: solid none none none;
-    border-width:1px; 
-    border-color: #ddd;
+	background-color: #f9f9f9 !important;
+	position: fixed; padding : 10px; bottom : 0; left : 0; right : 0;
+	border-style: solid none none none;
+	border-width: 1px;
+	border-color: #ddd;
 }
 
 #footerBranding {
-	font-weight:bold;	
+	font-weight: bold;
 }
