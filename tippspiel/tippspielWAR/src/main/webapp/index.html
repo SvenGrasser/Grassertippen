@@ -45,8 +45,9 @@
 							</div>
 							<div class="panel-body">
 								Gold: <label>{{memberSummary.gold}}</label> Silber: <label>{{memberSummary.silver}}</label>
-								Bronze: <label>{{memberSummary.bronze}}</label></br>
-								<button type="button" class="btn btn-info"
+								Bronze: <label>{{memberSummary.bronze}}</label>
+								<br></br>
+								<button type="button" class="btn btn-info btn-sm"
 									data-toggle="collapse" data-target="#demo{{$index + 1}}"
 									data-ng-click="showDetails(memberSummary)">Details</button>
 								<div id="demo{{$index + 1}}" class="collapse">
@@ -80,16 +81,17 @@
 
 	<!-- FOOTER -->
 	<footer id="mainFooter" class="bd-footer text-muted">
-		<div class="container">
-			<div id="footerBranding" class="row">
-				<div class="col-sm-12">made by svennetz.de</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12">{{tournaments}}</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12">Berechnungsgrundlage der
-					Gesamtpunktzahl: Gold = 5 Punkte|Silber = 3 Punkte|Bronze = 1 Punkt</div>
+
+		<div class="row">
+			<div class="col-sm-12">{{tournaments}}</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">Berechnungsgrundlage der
+				Gesamtpunktzahl: Gold = 5 Punkte|Silber = 3 Punkte|Bronze = 1 Punkt</div>
+		</div>
+		<div class="row">
+			<div id="footerBranding" class="col-sm-12">
+				<div>developed by svennetz.de</div>
 			</div>
 		</div>
 	</footer>
