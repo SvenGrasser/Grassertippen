@@ -43,3 +43,4 @@ function showMemberSummaryDetails($scope, $http, memberSummary) {
 		$scope.detailsHidden = false;
 	});
 }
+

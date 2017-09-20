@@ -32,8 +32,10 @@ public class MemberDetailsBean implements IMemberDetailsBean {
 		List<Integer> tournamentIdList = new ArrayList<Integer>();
 		for(Tournament tournament : tournaments) {
 			tournamentIdList.add(tournament.getId());
+			Integer position = getTournamentPosition(id, tournament.getId());			
 			MemberDetails details = new MemberDetails(member, tournament);
-			detailsList.add(details);
+			details.setPosition(position);
+			detailsList.add(details);			
 		}
 			
 		List<TournamentResult> tournamentResultList = getTournamentResultList(id, tournamentIdList);		
@@ -70,6 +72,24 @@ public class MemberDetailsBean implements IMemberDetailsBean {
 		queryTournamentResult.setParameter("tournamentIdList", tournamentIdList);		
 		List<TournamentResult> result = queryTournamentResult.getResultList();
 		return result;
+	}
+	
+	private Integer getTournamentPosition(int memberId, int tournamentId) {		
+		String statement = String.format(
+				"SELECT r FROM TournamentResult r where r.tournamentId=:tournamentId ORDER BY Result DESC");
+		TypedQuery<TournamentResult> queryTournamentResult = entityManager
+				.createQuery(statement, TournamentResult.class);
+		queryTournamentResult.setParameter("tournamentId", tournamentId);		
+		List<TournamentResult> result = queryTournamentResult.getResultList();
+		
+		Integer position = null;
+		for(int i = 0; i < result.size(); i++) {
+			if(result.get(i).getMemberId() == memberId) {
+				position = i + 1;
+				break;
+			}
+		}
+		return position;
 	}
 
 }
