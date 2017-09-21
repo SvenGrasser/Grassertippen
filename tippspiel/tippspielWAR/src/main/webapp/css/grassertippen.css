@@ -20,3 +20,10 @@ padding-bottom:80px; /* Height of the footer element */
 #footerBranding {
 	font-weight: bold;
 }
+
+.text-toogle[aria-expanded=false] .text-expanded {
+  display: none;
+}
+.text-toogle[aria-expanded=true] .text-collapsed {
+  display: none;
+}
