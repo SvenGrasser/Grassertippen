@@ -4,6 +4,7 @@ import de.svennetz.grasser.tippspiel.entities.Member;
 
 public class MemberSummary {
 	private Member member;	
+	private MemberDetails memberDetails;
 	
 	private int gold;
 	private int silver;
@@ -45,5 +46,14 @@ public class MemberSummary {
 	}
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	public MemberDetails getMemberDetails() {
+		return memberDetails;
+	}
+
+
+	public void setMemberDetails(MemberDetails memberDetails) {
+		this.memberDetails = memberDetails;
 	}	
 }

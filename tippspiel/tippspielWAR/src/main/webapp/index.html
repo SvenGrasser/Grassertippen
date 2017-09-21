@@ -28,6 +28,7 @@
 				<li class="active"><a href="index.html">Home</a></li>
 				<li><a href="links.html">Links</a></li>
 				<li><a href="about.html">Über uns</a></li>
+				<li><a href="impressum.html">Impressum</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -46,11 +47,11 @@
 							<div class="panel-body">
 								Gold: <label>{{memberSummary.gold}}</label> Silber: <label>{{memberSummary.silver}}</label>
 								Bronze: <label>{{memberSummary.bronze}}</label>
-								<div></div>								
-							    <a class="btn btn-default text-toogle" data-toggle="collapse" data-target="#demo{{$index + 1}}" data-ng-click="showDetails(memberSummary)" aria-expanded="false">
-								    <span class="text-collapsed"><span class="glyphicon glyphicon-plus"></span></span>
-								    <span class="text-expanded"><span class="glyphicon glyphicon-minus"></span></span>
-								</a>
+								<button type="button" class="btn btn-default btn-xs text-toogle" data-toggle="collapse" data-target="#demo{{$index + 1}}" aria-expanded="false"
+  									data-ng-click="showDetails(memberSummary)">
+  									<span class="text-collapsed glyphicon glyphicon-plus"></span>
+								    <span class="text-expanded glyphicon glyphicon-minus"></span>
+  								</button>
 								<div id="demo{{$index + 1}}" class="collapse">
 									<table class="table table-hover table-striped">
 										<thead>

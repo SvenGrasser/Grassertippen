@@ -37,10 +37,13 @@ function load($scope, $http) {
 }
 
 function showMemberSummaryDetails($scope, $http, memberSummary) {
-	$http.get("/tippspiel/api/v1/members/" + memberSummary.member.id + "?"  + Math.random())
-	.then(function(response) {
-		$scope.memberDetails = response.data;		
-		$scope.detailsHidden = false;
-	});
+	if(memberSummary.memberDetails == null) {	
+		$http.get("/tippspiel/api/v1/members/" + memberSummary.member.id + "?"  + Math.random())
+		.then(function(response) {
+			$scope.memberDetails = response.data;		
+			$scope.detailsHidden = false;
+			memberSummary.memberDetails = response.data;
+		});
+	}
 }
 
