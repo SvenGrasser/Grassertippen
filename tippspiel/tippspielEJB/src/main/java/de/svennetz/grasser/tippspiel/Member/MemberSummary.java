@@ -15,7 +15,6 @@ public class MemberSummary {
 		this.setMember(member);
 	}
 	
-
 	public Member getMember() {
 		return member;
 	}
@@ -55,5 +54,5 @@ public class MemberSummary {
 
 	public void setMemberDetails(MemberDetails memberDetails) {
 		this.memberDetails = memberDetails;
-	}	
+	}
 }

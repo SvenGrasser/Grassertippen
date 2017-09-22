@@ -15,9 +15,16 @@ padding-bottom:80px; /* Height of the footer element */
 	font-weight: bold;
 }
 
-.text-toogle[aria-expanded=false] .text-expanded {
+.details-toggle[aria-expanded=false] .details-expanded {
   display: none;
 }
-.text-toogle[aria-expanded=true] .text-collapsed {
+.details-toggle[aria-expanded=true] .details-collapsed {
+  display: none;
+}
+
+.status-toggle[aria-expanded=true] .status-inactive {
+  display: none;
+}
+.status-toggle[aria-expanded=false] .status-active {
   display: none;
 }

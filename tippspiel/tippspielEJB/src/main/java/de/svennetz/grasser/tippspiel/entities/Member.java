@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="t_member")
@@ -17,6 +18,9 @@ public class Member {
 	
 	@Column(name = "Name")
 	private String name;	
+
+	@Column(name = "IsActive")
+	private boolean isActive;
 	
 	public int getId() {
 		return id;
@@ -30,5 +34,11 @@ public class Member {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}	
+	public boolean getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 }

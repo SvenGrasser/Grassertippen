@@ -6,6 +6,11 @@ app.controller('start', function($scope, $http) {
 	$scope.showDetails = function(memberSummary) {
 		showMemberSummaryDetails($scope, $http, memberSummary);
 	}
+	
+	$scope.checkboxModel = {
+		       value1 : true,
+		       value2 : 'YES'
+		     };
 });
 
 function load($scope, $http) {
