@@ -10,14 +10,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-
 import de.svennetz.grasser.tippspiel.Member.MemberDetails;
 import de.svennetz.grasser.tippspiel.Member.MemberSummary;
 import de.svennetz.grasser.tippspiel.beans.IMemberDetailsBean;
 import de.svennetz.grasser.tippspiel.beans.IMemberSummaryBean;
+import de.svennetz.grasser.utility.logging.Log;
 
 
 
@@ -29,23 +26,21 @@ public class MemberResource {
 	@EJB
 	private IMemberDetailsBean memberDetailsBean;
 	
-	private static final Logger logger = LogManager.getLogger(MemberResource.class);
+	private static final Log log = new Log(MemberResource.class);
 	
-	public MemberResource() {
-		BasicConfigurator.configure();
-	}
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	public List<MemberSummary> getMemberSummaryList() {
-		logger.info("TIPPSPIEL +++ Request getMemberSummaryList");
+		log.info("getMemberSummaryList");
 		return memberSummaryBean.getMemberSummaryList();
 	}
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	@Path("{id}")
-	public List<MemberDetails> getMemberDetails(@PathParam("id") int id) {		
+	public List<MemberDetails> getMemberDetails(@PathParam("id") int id) {
+		log.info("getMemberDetails");		
 		return memberDetailsBean.getMemberDetails(id);
 	}
 
