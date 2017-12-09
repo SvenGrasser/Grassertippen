@@ -14,7 +14,7 @@ public class Log {
 	}
 	
 	public void info(String message) {
-		String logMessage = String.format("%s=\"%s\";%s=\"%s\"", "application", "tippspiel", "message", message);
+		String logMessage = String.format("%s=%s %s=%s", "application", "tippspiel", "message", message);
 		logger.info(logMessage);
 	}
 }

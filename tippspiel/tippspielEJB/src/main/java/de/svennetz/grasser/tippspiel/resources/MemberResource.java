@@ -40,7 +40,7 @@ public class MemberResource {
 	@Produces({MediaType.APPLICATION_JSON})
 	@Path("{id}")
 	public List<MemberDetails> getMemberDetails(@PathParam("id") int id) {
-		log.info("getMemberDetails");		
+		log.info(String.format("%s(%d)", "getMemberDetails", id));		
 		return memberDetailsBean.getMemberDetails(id);
 	}
 
