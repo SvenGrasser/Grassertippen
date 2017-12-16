@@ -66,10 +66,10 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr data-ng-repeat="memberDetails in memberDetails">
-												<td>{{memberDetails.tournament.descriptionShort}}</td>
-												<td>{{memberDetails.score}}</td>
-												<td>{{memberDetails.position}}</td>
+											<tr data-ng-repeat="memberDetail in memberSummary.memberDetails">
+												<td>{{memberDetail.tournament.descriptionShort}}</td>
+												<td>{{memberDetail.score}}</td>
+												<td>{{memberDetail.position}}</td>
 											</tr>
 										</tbody>
 									</table>
