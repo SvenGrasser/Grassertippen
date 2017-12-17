@@ -43,11 +43,11 @@ public class MemberSummary {
 				scoreValue = ScoreValues.Score_Gold;
 				break;
 			case Silver:
-				this.silver = this.gold + 1;
+				this.silver = this.silver + 1;
 				scoreValue = ScoreValues.Score_Silver;
 				break;
 			case Bronze:
-				this.bronze = this.gold + 1;
+				this.bronze = this.bronze + 1;
 				scoreValue = ScoreValues.Score_Bronze;
 				break;
 			default:
