@@ -14,6 +14,8 @@ import de.svennetz.grasser.tippspiel.Member.ScoreComparator;
 import de.svennetz.grasser.tippspiel.Member.ScoreType;
 import de.svennetz.grasser.tippspiel.entities.Member;
 import de.svennetz.grasser.tippspiel.entities.TournamentResult;
+import de.svennetz.grasser.tippspiel.repositories.IMemberRepository;
+import de.svennetz.grasser.tippspiel.repositories.ITournamentResultRepository;
 
 
 @Stateless
@@ -21,17 +23,24 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 	@PersistenceContext
 	private EntityManager entityManager;	
 	@EJB
-	private IMemberBean memberBean;
+	private IMemberRepository memberRepository;
 	@EJB
-	private ITournamentBean tournamentBean;
+	private ITournamentResultRepository tournamentResultRepository;
 		
 	
 	@Override
 	public List<MemberSummary> getMemberSummaryList() {
-		List<Member> members = memberBean.getMembers();
-		List<TournamentResult> tournamentResults = getTournamentResults();
+		List<Member> members = memberRepository.readList();
+		List<TournamentResult> tournamentResults = tournamentResultRepository.readSortedList();
 		List<MemberSummary> memberSummaries = initMemberSummaries(members);
 		
+		fillMemberSummaries(tournamentResults, memberSummaries);
+				
+		Collections.sort(memberSummaries, new ScoreComparator());
+		return memberSummaries;
+	}
+
+	private void fillMemberSummaries(List<TournamentResult> tournamentResults, List<MemberSummary> memberSummaries) {
 		int currentTournamentId = 0;
 		int currentResultIndex = 0;
 		int currentResult = 0;
@@ -40,6 +49,10 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 				currentTournamentId = tr.getTournamentId();
 				currentResultIndex = 0;
 				currentResult = 0;
+			}
+			
+			if(currentResultIndex > 3) {
+				continue;
 			}
 			
 			if(currentResult == 0 || Integer.compare(tr.getResult(), (currentResult)) == -1) {
@@ -59,9 +72,6 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 				memberSummary.addScore(ScoreType.Bronze);
 			}
 		}
-				
-		Collections.sort(memberSummaries, new ScoreComparator());
-		return memberSummaries;
 	}
 
 	private List<MemberSummary> initMemberSummaries(List<Member> members) {
@@ -80,11 +90,5 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 			}
 		}
 		return null;
-	}
-	
-	private List<TournamentResult> getTournamentResults() {			  
-		String statement = String.format(
-				"SELECT r FROM TournamentResult r order by r.tournamentId, r.result desc");
-		return  entityManager.createQuery(statement, TournamentResult.class).getResultList();
 	}	
 }
