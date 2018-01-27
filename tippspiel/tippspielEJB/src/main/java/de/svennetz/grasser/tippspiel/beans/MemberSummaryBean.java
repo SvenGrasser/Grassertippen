@@ -8,13 +8,11 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 import de.svennetz.grasser.tippspiel.Member.MemberSummary;
 import de.svennetz.grasser.tippspiel.Member.ScoreComparator;
 import de.svennetz.grasser.tippspiel.Member.ScoreType;
 import de.svennetz.grasser.tippspiel.entities.Member;
-import de.svennetz.grasser.tippspiel.entities.Tournament;
 import de.svennetz.grasser.tippspiel.entities.TournamentResult;
 
 
@@ -31,40 +29,62 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 	@Override
 	public List<MemberSummary> getMemberSummaryList() {
 		List<Member> members = memberBean.getMembers();
-		List<Tournament> tournaments = tournamentBean.getTournaments();
+		List<TournamentResult> tournamentResults = getTournamentResults();
+		List<MemberSummary> memberSummaries = initMemberSummaries(members);
 		
-		ArrayList<MemberSummary> memberSummaries = new ArrayList<MemberSummary>();
-		for (Member member : members) {
-			MemberSummary memberSummary = new MemberSummary(member);
-			memberSummaries.add(memberSummary);
-			fillMemberTournamentSummaries(memberSummary, member, tournaments);
+		int currentTournamentId = 0;
+		int currentResultIndex = 0;
+		int currentResult = 0;
+		for (TournamentResult tr : tournamentResults ) {
+			if(Integer.compare(currentTournamentId, tr.getTournamentId()) != 0) {
+				currentTournamentId = tr.getTournamentId();
+				currentResultIndex = 0;
+				currentResult = 0;
+			}
+			
+			if(currentResult == 0 || Integer.compare(tr.getResult(), (currentResult)) == -1) {
+				currentResultIndex = currentResultIndex + 1;
+			}			
+		
+			if(currentResultIndex == 1) {
+				MemberSummary memberSummary = getMemberSummary(memberSummaries, tr.getMemberId());				
+				memberSummary.addScore(ScoreType.Gold);
+			}
+			else if(currentResultIndex == 2) {
+				MemberSummary memberSummary = getMemberSummary(memberSummaries, tr.getMemberId());		
+				memberSummary.addScore(ScoreType.Silver);
+			}
+			else if(currentResultIndex == 3) {
+				MemberSummary memberSummary = getMemberSummary(memberSummaries, tr.getMemberId());		
+				memberSummary.addScore(ScoreType.Bronze);
+			}
 		}
 				
 		Collections.sort(memberSummaries, new ScoreComparator());
 		return memberSummaries;
 	}
-	
-	private void fillMemberTournamentSummaries(MemberSummary memberSummary, Member m, List<Tournament> tournamentList) {
-		String statement;
-		for (Tournament tournament : tournamentList) {
-			statement = String.format(
-					"SELECT r FROM TournamentResult r where r.tournamentId = :tournamentId order by r.result desc");
-			TypedQuery<TournamentResult> queryTournamentResult = entityManager
-					.createQuery(statement, TournamentResult.class).setParameter("tournamentId", tournament.getId())
-					.setMaxResults(3);
 
-			fillMemberSummary(memberSummary, m, queryTournamentResult.getResultList());
+	private List<MemberSummary> initMemberSummaries(List<Member> members) {
+		ArrayList<MemberSummary> memberSummaries = new ArrayList<MemberSummary>();
+		for (Member member : members ) {
+			MemberSummary memberSummary = new MemberSummary(member);
+			memberSummaries.add(memberSummary);
 		}
+		return memberSummaries;
+	}
+
+	private MemberSummary getMemberSummary(List<MemberSummary> memberSummaries, int id) {
+		for (MemberSummary memberSummary : memberSummaries) {
+			if(memberSummary.getMember().getId() == id) {
+				return memberSummary;
+			}
+		}
+		return null;
 	}
 	
-	private void fillMemberSummary(MemberSummary memberSummary, Member m, List<TournamentResult> tournamentResultList) {
-				
-		if (m.getId() == tournamentResultList.get(0).getMemberId()) {
-			memberSummary.addScore(ScoreType.Gold);
-		} else if (m.getId() == tournamentResultList.get(1).getMemberId()) {
-			memberSummary.addScore(ScoreType.Silver);
-		} else if (m.getId() == tournamentResultList.get(2).getMemberId()) {
-			memberSummary.addScore(ScoreType.Bronze);
-		}
-	}
+	private List<TournamentResult> getTournamentResults() {			  
+		String statement = String.format(
+				"SELECT r FROM TournamentResult r order by r.tournamentId, r.result desc");
+		return  entityManager.createQuery(statement, TournamentResult.class).getResultList();
+	}	
 }
