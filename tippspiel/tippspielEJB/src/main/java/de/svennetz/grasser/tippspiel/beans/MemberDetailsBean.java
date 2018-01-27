@@ -13,22 +13,26 @@ import de.svennetz.grasser.tippspiel.Member.MemberDetails;
 import de.svennetz.grasser.tippspiel.entities.Member;
 import de.svennetz.grasser.tippspiel.entities.Tournament;
 import de.svennetz.grasser.tippspiel.entities.TournamentResult;
+import de.svennetz.grasser.tippspiel.repositories.IMemberRepository;
+import de.svennetz.grasser.tippspiel.repositories.ITournamentRepository;
+import de.svennetz.grasser.tippspiel.repositories.ITournamentResultRepository;
 
 @Stateless
 public class MemberDetailsBean implements IMemberDetailsBean {
 	@PersistenceContext
 	private EntityManager entityManager;	
 	@EJB
-	private IMemberBean memberBean;
+	private IMemberRepository memberRepository;
 	@EJB
-	private ITournamentBean tournamentBean;
+	private ITournamentRepository tournamentRepository;
+	@EJB
+	private ITournamentResultRepository tournamentResultRepository;
 	
 	@Override
 	public List<MemberDetails> getMemberDetails(int id) {
 		List<MemberDetails> detailsList = new ArrayList<MemberDetails>();
-		
-		Member member = memberBean.getMember(id);
-		List<Tournament> tournaments = tournamentBean.getTournaments();
+		Member member = memberRepository.readItem(id);
+		List<Tournament> tournaments = tournamentRepository.readList();
 		List<Integer> tournamentIdList = new ArrayList<Integer>();
 		for(Tournament tournament : tournaments) {
 			tournamentIdList.add(tournament.getId());
@@ -38,7 +42,7 @@ public class MemberDetailsBean implements IMemberDetailsBean {
 			detailsList.add(details);			
 		}
 			
-		List<TournamentResult> tournamentResultList = getTournamentResultList(id, tournamentIdList);		
+		List<TournamentResult> tournamentResultList = tournamentResultRepository.readFilteredList(tournamentIdList, id);		
 		fillDetailsList(detailsList, tournamentResultList);		
 		return detailsList;
 	}
@@ -62,26 +66,9 @@ public class MemberDetailsBean implements IMemberDetailsBean {
 		}
 		return result;		
 	}
-
-	private List<TournamentResult> getTournamentResultList(int id, List<Integer> tournamentIdList) {
-		String statement = String.format(
-				"SELECT r FROM TournamentResult r where r.memberId = :id and r.tournamentId in (:tournamentIdList)");
-		TypedQuery<TournamentResult> queryTournamentResult = entityManager
-				.createQuery(statement, TournamentResult.class);
-		queryTournamentResult.setParameter("id", id);
-		queryTournamentResult.setParameter("tournamentIdList", tournamentIdList);		
-		List<TournamentResult> result = queryTournamentResult.getResultList();
-		return result;
-	}
 	
-	private Integer getTournamentPosition(int memberId, int tournamentId) {		
-		String statement = String.format(
-				"SELECT r FROM TournamentResult r where r.tournamentId=:tournamentId ORDER BY Result DESC");
-		TypedQuery<TournamentResult> queryTournamentResult = entityManager
-				.createQuery(statement, TournamentResult.class);
-		queryTournamentResult.setParameter("tournamentId", tournamentId);		
-		List<TournamentResult> result = queryTournamentResult.getResultList();
-		
+	private Integer getTournamentPosition(int memberId, int tournamentId) {
+		List<TournamentResult> result = tournamentResultRepository.readFilteredList(tournamentId, true);		
 		Integer position = null;
 		for(int i = 0; i < result.size(); i++) {
 			if(result.get(i).getMemberId() == memberId) {
