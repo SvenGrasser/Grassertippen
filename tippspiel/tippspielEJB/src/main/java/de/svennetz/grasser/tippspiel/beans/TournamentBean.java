@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import de.svennetz.grasser.tippspiel.entities.Tournament;
+import de.svennetz.grasser.tippspiel.repositories.IMemberRepository;
 import de.svennetz.grasser.tippspiel.repositories.ITournamentRepository;
 
 
@@ -13,6 +14,13 @@ import de.svennetz.grasser.tippspiel.repositories.ITournamentRepository;
 public class TournamentBean implements ITournamentBean {
 	@EJB
 	private ITournamentRepository tournamentRepository;
+	
+	public TournamentBean() {
+	}
+	
+	public TournamentBean(ITournamentRepository repository) {
+		tournamentRepository = repository;
+	}
 	
 	@Override
 	public List<Tournament> getTournaments() {

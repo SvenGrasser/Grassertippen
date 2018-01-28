@@ -5,9 +5,6 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 import de.svennetz.grasser.tippspiel.Member.MemberDetails;
 import de.svennetz.grasser.tippspiel.entities.Member;
@@ -19,8 +16,6 @@ import de.svennetz.grasser.tippspiel.repositories.ITournamentResultRepository;
 
 @Stateless
 public class MemberDetailsBean implements IMemberDetailsBean {
-	@PersistenceContext
-	private EntityManager entityManager;	
 	@EJB
 	private IMemberRepository memberRepository;
 	@EJB

@@ -14,6 +14,13 @@ public class MemberBean implements IMemberBean {
 	@EJB
 	private IMemberRepository memberRepository;
 	
+	public MemberBean() {
+	}
+	
+	public MemberBean(IMemberRepository repository) {
+		memberRepository = repository;
+	}
+	
 	@Override
 	public List<Member> getMembers() {
 		return memberRepository.readList();

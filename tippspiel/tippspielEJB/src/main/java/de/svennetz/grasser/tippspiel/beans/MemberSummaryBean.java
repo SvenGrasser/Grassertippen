@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import de.svennetz.grasser.tippspiel.Member.MemberSummary;
 import de.svennetz.grasser.tippspiel.Member.ScoreComparator;
@@ -20,8 +18,6 @@ import de.svennetz.grasser.tippspiel.repositories.ITournamentResultRepository;
 
 @Stateless
 public class MemberSummaryBean implements IMemberSummaryBean {
-	@PersistenceContext
-	private EntityManager entityManager;	
 	@EJB
 	private IMemberRepository memberRepository;
 	@EJB
