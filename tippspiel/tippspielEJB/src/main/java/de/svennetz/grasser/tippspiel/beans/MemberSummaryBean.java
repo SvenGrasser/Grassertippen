@@ -73,7 +73,7 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 	private List<MemberSummary> initMemberSummaries(List<Member> members) {
 		ArrayList<MemberSummary> memberSummaries = new ArrayList<MemberSummary>();
 		for (Member member : members ) {
-			MemberSummary memberSummary = new MemberSummary(member);
+			MemberSummary memberSummary = new MemberSummary(member.getId(), member.getName(), member.getIsActive());
 			memberSummaries.add(memberSummary);
 		}
 		return memberSummaries;
@@ -81,7 +81,7 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 
 	private MemberSummary getMemberSummary(List<MemberSummary> memberSummaries, int id) {
 		for (MemberSummary memberSummary : memberSummaries) {
-			if(memberSummary.getMember().getId() == id) {
+			if(memberSummary.getId() == id) {
 				return memberSummary;
 			}
 		}

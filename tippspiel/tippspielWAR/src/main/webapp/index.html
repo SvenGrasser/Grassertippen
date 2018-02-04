@@ -41,9 +41,9 @@
 					<div class="panel-group">
 						<div class="panel panel-default">
 							<div class="panel-heading">							
-								<span class="glyphicon glyphicon-user"></span> <label>{{memberSummary.member.name}}</label>
+								<span class="glyphicon glyphicon-user"></span> <label>{{memberSummary.name}}</label>
 								- Gesamtpunktzahl: {{memberSummary.score}}
-								<div class="status-toggle" data-toggle="collapse" aria-expanded="{{memberSummary.member.isActive}}">
+								<div class="status-toggle" data-toggle="collapse" aria-expanded="{{memberSummary.isActive}}">
   									Status: <span class="status-active glyphicon glyphicon-ok"></span>
 								    <span class="status-inactive glyphicon glyphicon-remove"></span>
   								</div>
@@ -67,7 +67,7 @@
 										</thead>
 										<tbody>
 											<tr data-ng-repeat="memberDetail in memberSummary.memberDetails">
-												<td>{{memberDetail.tournament.descriptionShort}}</td>
+												<td>{{memberDetail.tournamentDescriptionShort}}</td>
 												<td>{{memberDetail.score}}</td>
 												<td>{{memberDetail.position}}</td>
 											</tr>

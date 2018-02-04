@@ -43,7 +43,7 @@ function load($scope, $http) {
 
 function showMemberSummaryDetails($scope, $http, memberSummary) {
 	if(memberSummary.memberDetails == null) {	
-		$http.get("/tippspiel/api/v1/members/" + memberSummary.member.id + "?"  + Math.random())
+		$http.get("/tippspiel/api/v1/members/" + memberSummary.id + "?"  + Math.random())
 		.then(function(response) {	
 			$scope.detailsHidden = false;
 			memberSummary.memberDetails = response.data;

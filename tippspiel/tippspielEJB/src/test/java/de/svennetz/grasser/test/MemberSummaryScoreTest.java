@@ -62,7 +62,7 @@ public class MemberSummaryScoreTest {
 
 	private MemberSummary createMemberSummary() {
 		Member member = createMember();
-		MemberSummary memberSummary = new MemberSummary(member);
+		MemberSummary memberSummary = new MemberSummary(member.getId(), member.getName(), member.getIsActive());
 		return memberSummary;
 	}
 

@@ -1,27 +1,30 @@
 package de.svennetz.grasser.tippspiel.Member;
 
-import de.svennetz.grasser.tippspiel.entities.Member;
-
 public class MemberSummary {
-	private Member member;	
+	private int id;	
+	private String name;
+	private boolean isActive;
 	private MemberDetails memberDetails;	
 	private int gold;
 	private int silver;
 	private int bronze;
 	private int score;
 	
-	public MemberSummary(Member member) {
-		this.setMember(member);
+	public MemberSummary(int memberId, String memberName, boolean isActive) {
+		this.id = memberId;
+		this.name = memberName;
+		this.isActive = isActive;
 	}
 	
-	public Member getMember() {
-		return member;
+	public int getId() {
+		return id;
 	}	
-	
-	public void setMember(Member member) {
-		this.member = member;
+	public String getName() {
+		return name;
 	}
-
+	public boolean getIsActive() {
+		return isActive;
+	}
 	public int getGold() {
 		return gold;
 	}

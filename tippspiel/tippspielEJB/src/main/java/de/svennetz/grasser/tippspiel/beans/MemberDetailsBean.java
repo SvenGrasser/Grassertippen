@@ -7,7 +7,6 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import de.svennetz.grasser.tippspiel.Member.MemberDetails;
-import de.svennetz.grasser.tippspiel.entities.Member;
 import de.svennetz.grasser.tippspiel.entities.Tournament;
 import de.svennetz.grasser.tippspiel.entities.TournamentResult;
 import de.svennetz.grasser.tippspiel.repositories.IMemberRepository;
@@ -26,13 +25,12 @@ public class MemberDetailsBean implements IMemberDetailsBean {
 	@Override
 	public List<MemberDetails> getMemberDetails(int id) {
 		List<MemberDetails> detailsList = new ArrayList<MemberDetails>();
-		Member member = memberRepository.readItem(id);
 		List<Tournament> tournaments = tournamentRepository.readList();
 		List<Integer> tournamentIdList = new ArrayList<Integer>();
 		for(Tournament tournament : tournaments) {
 			tournamentIdList.add(tournament.getId());
 			Integer position = getTournamentPosition(id, tournament.getId());			
-			MemberDetails details = new MemberDetails(member, tournament);
+			MemberDetails details = new MemberDetails(tournament.getId(), tournament.getDescriptionShort());
 			details.setPosition(position);
 			detailsList.add(details);			
 		}
@@ -54,7 +52,7 @@ public class MemberDetailsBean implements IMemberDetailsBean {
 	private MemberDetails getMemberDetails(TournamentResult tr, List<MemberDetails> detailsList) {
 		MemberDetails result = null;
 		for(MemberDetails m : detailsList) {
-			if(m.getTournament().getId() == tr.getTournamentId()) {
+			if(m.getTournamentId() == tr.getTournamentId()) {
 				result = m;
 				break;
 			}
