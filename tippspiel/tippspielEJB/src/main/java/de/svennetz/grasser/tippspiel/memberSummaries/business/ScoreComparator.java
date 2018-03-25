@@ -1,4 +1,4 @@
-package de.svennetz.grasser.tippspiel.Member;
+package de.svennetz.grasser.tippspiel.memberSummaries.business;
 
 import java.util.Comparator;
 

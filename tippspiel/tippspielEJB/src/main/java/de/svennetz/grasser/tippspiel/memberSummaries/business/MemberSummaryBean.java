@@ -1,4 +1,4 @@
-package de.svennetz.grasser.tippspiel.beans;
+package de.svennetz.grasser.tippspiel.memberSummaries.business;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,13 +7,10 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import de.svennetz.grasser.tippspiel.Member.MemberSummary;
-import de.svennetz.grasser.tippspiel.Member.ScoreComparator;
-import de.svennetz.grasser.tippspiel.Member.ScoreType;
-import de.svennetz.grasser.tippspiel.entities.Member;
-import de.svennetz.grasser.tippspiel.entities.TournamentResult;
-import de.svennetz.grasser.tippspiel.repositories.IMemberRepository;
-import de.svennetz.grasser.tippspiel.repositories.ITournamentResultRepository;
+import de.svennetz.grasser.tippspiel.members.entities.MemberEntity;
+import de.svennetz.grasser.tippspiel.members.repositories.IMemberRepository;
+import de.svennetz.grasser.tippspiel.tournamentResults.entities.TournamentResultEntity;
+import de.svennetz.grasser.tippspiel.tournamentResults.repositories.ITournamentResultRepository;
 
 
 @Stateless
@@ -26,8 +23,8 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 	
 	@Override
 	public List<MemberSummary> getMemberSummaryList() {
-		List<Member> members = memberRepository.readList();
-		List<TournamentResult> tournamentResults = tournamentResultRepository.readSortedList();
+		List<MemberEntity> members = memberRepository.readList();
+		List<TournamentResultEntity> tournamentResults = tournamentResultRepository.readSortedList();
 		List<MemberSummary> memberSummaries = initMemberSummaries(members);
 		
 		fillMemberSummaries(tournamentResults, memberSummaries);
@@ -36,11 +33,11 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 		return memberSummaries;
 	}
 
-	private void fillMemberSummaries(List<TournamentResult> tournamentResults, List<MemberSummary> memberSummaries) {
+	private void fillMemberSummaries(List<TournamentResultEntity> tournamentResults, List<MemberSummary> memberSummaries) {
 		int currentTournamentId = 0;
 		int currentResultIndex = 0;
 		int currentResult = 0;
-		for (TournamentResult tr : tournamentResults ) {
+		for (TournamentResultEntity tr : tournamentResults ) {
 			if(Integer.compare(currentTournamentId, tr.getTournamentId()) != 0) {
 				currentTournamentId = tr.getTournamentId();
 				currentResultIndex = 0;
@@ -70,9 +67,9 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 		}
 	}
 
-	private List<MemberSummary> initMemberSummaries(List<Member> members) {
+	private List<MemberSummary> initMemberSummaries(List<MemberEntity> members) {
 		ArrayList<MemberSummary> memberSummaries = new ArrayList<MemberSummary>();
-		for (Member member : members ) {
+		for (MemberEntity member : members ) {
 			MemberSummary memberSummary = new MemberSummary(member.getId(), member.getName(), member.getIsActive());
 			memberSummaries.add(memberSummary);
 		}

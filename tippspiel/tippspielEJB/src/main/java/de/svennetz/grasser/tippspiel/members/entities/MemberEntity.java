@@ -1,4 +1,4 @@
-package de.svennetz.grasser.tippspiel.entities;
+package de.svennetz.grasser.tippspiel.members.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="t_member")
-public class Member {	
+public class MemberEntity {	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id")

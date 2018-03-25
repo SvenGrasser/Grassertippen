@@ -1,11 +1,11 @@
-package de.svennetz.grasser.tippspiel.repositories;
+package de.svennetz.grasser.tippspiel.members.repositories;
 
 import java.util.List;
 
-import de.svennetz.grasser.tippspiel.entities.Member;
+import de.svennetz.grasser.tippspiel.members.entities.MemberEntity;
 
 
 public interface IMemberRepository {	
-	List<Member> readList();
-	Member readItem(int id);
+	List<MemberEntity> readList();
+	MemberEntity readItem(int id);
 }

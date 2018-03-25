@@ -1,11 +1,11 @@
-package de.svennetz.grasser.tippspiel.repositories;
+package de.svennetz.grasser.tippspiel.tournamentResults.repositories;
 
 import java.util.List;
 
-import de.svennetz.grasser.tippspiel.entities.TournamentResult;
+import de.svennetz.grasser.tippspiel.tournamentResults.entities.TournamentResultEntity;
 
 public interface ITournamentResultRepository {
-	List<TournamentResult> readSortedList();
-	List<TournamentResult> readFilteredList(int tournamentId, boolean sortedByResult);
-	List<TournamentResult> readFilteredList(List<Integer> tournamentIdList, int memberId);
+	List<TournamentResultEntity> readSortedList();
+	List<TournamentResultEntity> readFilteredList(int tournamentId, boolean sortedByResult);
+	List<TournamentResultEntity> readFilteredList(List<Integer> tournamentIdList, int memberId);
 }

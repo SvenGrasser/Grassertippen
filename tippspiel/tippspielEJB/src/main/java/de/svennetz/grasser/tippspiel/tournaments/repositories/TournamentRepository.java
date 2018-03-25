@@ -1,4 +1,4 @@
-package de.svennetz.grasser.tippspiel.repositories;
+package de.svennetz.grasser.tippspiel.tournaments.repositories;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import de.svennetz.grasser.tippspiel.entities.Tournament;
+import de.svennetz.grasser.tippspiel.tournaments.entities.TournamentEntity;
 
 @Stateless
 public class TournamentRepository implements ITournamentRepository {
@@ -15,9 +15,9 @@ public class TournamentRepository implements ITournamentRepository {
 	private EntityManager entityManager;
 	
 	@Override
-	public List<Tournament> readList() {
-		String statement = String.format("SELECT t FROM Tournament t");
-		TypedQuery<Tournament> queryTournament = entityManager.createQuery(statement, Tournament.class);
+	public List<TournamentEntity> readList() {
+		String statement = String.format("SELECT t FROM TournamentEntity t");
+		TypedQuery<TournamentEntity> queryTournament = entityManager.createQuery(statement, TournamentEntity.class);
 		return queryTournament.getResultList();
 	}
 

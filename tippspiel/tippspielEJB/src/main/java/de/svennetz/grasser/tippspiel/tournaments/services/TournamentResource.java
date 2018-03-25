@@ -1,4 +1,4 @@
-package de.svennetz.grasser.tippspiel.resources;
+package de.svennetz.grasser.tippspiel.tournaments.services;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import de.svennetz.grasser.tippspiel.beans.ITournamentBean;
-import de.svennetz.grasser.tippspiel.entities.Tournament;
+import de.svennetz.grasser.tippspiel.tournaments.business.ITournamentBean;
+import de.svennetz.grasser.tippspiel.tournaments.business.Tournament;
 
 
 @Path("tournaments")

@@ -1,4 +1,4 @@
-package de.svennetz.grasser.tippspiel.entities;
+package de.svennetz.grasser.tippspiel.tournaments.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="t_tournament")
-public class Tournament {
+public class TournamentEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id")

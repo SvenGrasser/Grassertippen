@@ -1,12 +1,12 @@
-package de.svennetz.grasser.tippspiel.beans;
+package de.svennetz.grasser.tippspiel.members.business;
 
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import de.svennetz.grasser.tippspiel.entities.Member;
-import de.svennetz.grasser.tippspiel.repositories.IMemberRepository;
+import de.svennetz.grasser.tippspiel.members.entities.MemberEntity;
+import de.svennetz.grasser.tippspiel.members.repositories.IMemberRepository;
 
 
 @Stateless
@@ -22,12 +22,12 @@ public class MemberBean implements IMemberBean {
 	}
 	
 	@Override
-	public List<Member> getMembers() {
+	public List<MemberEntity> getMembers() {
 		return memberRepository.readList();
 	}
 	
 	@Override
-	public Member getMember(int id) {
+	public MemberEntity getMember(int id) {
 		return memberRepository.readItem(id);
 	}
 }

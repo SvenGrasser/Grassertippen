@@ -1,13 +1,13 @@
-package de.svennetz.grasser.tippspiel.beans;
+package de.svennetz.grasser.tippspiel.tournaments.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import de.svennetz.grasser.tippspiel.entities.Tournament;
-import de.svennetz.grasser.tippspiel.repositories.IMemberRepository;
-import de.svennetz.grasser.tippspiel.repositories.ITournamentRepository;
+import de.svennetz.grasser.tippspiel.tournaments.entities.TournamentEntity;
+import de.svennetz.grasser.tippspiel.tournaments.repositories.ITournamentRepository;
 
 
 @Stateless
@@ -24,6 +24,14 @@ public class TournamentBean implements ITournamentBean {
 	
 	@Override
 	public List<Tournament> getTournaments() {
-		return tournamentRepository.readList();
+		List<TournamentEntity> tournamentEntities = tournamentRepository.readList();
+		
+		List<Tournament> tournaments = new ArrayList<Tournament>(tournamentEntities.size());
+		for(TournamentEntity tournamentEntity : tournamentEntities) {
+			Tournament tournament = new Tournament(tournamentEntity.getId(), tournamentEntity.getDescriptionShort());
+			tournaments.add(tournament);
+		}
+		
+		return tournaments;
 	}
 }

@@ -1,8 +1,6 @@
-package de.svennetz.grasser.tippspiel.beans;
+package de.svennetz.grasser.tippspiel.memberDetails.business;
 
 import java.util.List;
-
-import de.svennetz.grasser.tippspiel.Member.MemberDetails;
 
 public interface IMemberDetailsBean {
 	List<MemberDetails> getMemberDetails(int id);

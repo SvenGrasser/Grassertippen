@@ -1,4 +1,4 @@
-package de.svennetz.grasser.tippspiel.Member;
+package de.svennetz.grasser.tippspiel.memberDetails.business;
 
 public class MemberDetails {
 	private int tournamentId;

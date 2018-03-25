@@ -12,10 +12,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import de.svennetz.grasser.tippspiel.beans.ITournamentBean;
-import de.svennetz.grasser.tippspiel.beans.TournamentBean;
-import de.svennetz.grasser.tippspiel.entities.Tournament;
-import de.svennetz.grasser.tippspiel.repositories.ITournamentRepository;
+import de.svennetz.grasser.tippspiel.tournaments.business.ITournamentBean;
+import de.svennetz.grasser.tippspiel.tournaments.business.Tournament;
+import de.svennetz.grasser.tippspiel.tournaments.business.TournamentBean;
+import de.svennetz.grasser.tippspiel.tournaments.entities.TournamentEntity;
+import de.svennetz.grasser.tippspiel.tournaments.repositories.ITournamentRepository;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TournamentBeanTest {
@@ -31,7 +32,7 @@ public class TournamentBeanTest {
 
 	@Test
 	public void testGetTournaments() {
-		Mockito.when(mockRepository.readList()).thenReturn(new ArrayList<Tournament>());
+		Mockito.when(mockRepository.readList()).thenReturn(new ArrayList<TournamentEntity>());
 
 		List<Tournament> tournaments = tournamentBean.getTournaments();
 		assertTrue(tournaments != null);

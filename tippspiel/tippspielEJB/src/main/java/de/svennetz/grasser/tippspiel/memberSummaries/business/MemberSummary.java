@@ -1,4 +1,6 @@
-package de.svennetz.grasser.tippspiel.Member;
+package de.svennetz.grasser.tippspiel.memberSummaries.business;
+
+import de.svennetz.grasser.tippspiel.memberDetails.business.MemberDetails;
 
 public class MemberSummary {
 	private int id;	

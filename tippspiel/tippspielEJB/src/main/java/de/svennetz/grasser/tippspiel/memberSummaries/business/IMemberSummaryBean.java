@@ -1,8 +1,6 @@
-package de.svennetz.grasser.tippspiel.beans;
+package de.svennetz.grasser.tippspiel.memberSummaries.business;
 
 import java.util.List;
-
-import de.svennetz.grasser.tippspiel.Member.MemberSummary;
 
 
 public interface IMemberSummaryBean {

@@ -1,8 +1,6 @@
-package de.svennetz.grasser.tippspiel.beans;
+package de.svennetz.grasser.tippspiel.tournaments.business;
 
 import java.util.List;
-
-import de.svennetz.grasser.tippspiel.entities.Tournament;
 
 
 public interface ITournamentBean {

@@ -4,9 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import de.svennetz.grasser.tippspiel.Member.MemberSummary;
-import de.svennetz.grasser.tippspiel.Member.ScoreType;
-import de.svennetz.grasser.tippspiel.entities.Member;
+import de.svennetz.grasser.tippspiel.memberSummaries.business.MemberSummary;
+import de.svennetz.grasser.tippspiel.memberSummaries.business.ScoreType;
+import de.svennetz.grasser.tippspiel.members.entities.MemberEntity;
 
 public class MemberSummaryScoreTest {
 
@@ -61,13 +61,13 @@ public class MemberSummaryScoreTest {
 	}
 
 	private MemberSummary createMemberSummary() {
-		Member member = createMember();
+		MemberEntity member = createMember();
 		MemberSummary memberSummary = new MemberSummary(member.getId(), member.getName(), member.getIsActive());
 		return memberSummary;
 	}
 
-	private Member createMember() {
-		Member member = new Member();
+	private MemberEntity createMember() {
+		MemberEntity member = new MemberEntity();
 		member.setId(1);
 		member.setName("Testmann");
 		return member;

@@ -1,9 +1,9 @@
-package de.svennetz.grasser.tippspiel.repositories;
+package de.svennetz.grasser.tippspiel.tournaments.repositories;
 
 import java.util.List;
 
-import de.svennetz.grasser.tippspiel.entities.Tournament;
+import de.svennetz.grasser.tippspiel.tournaments.entities.TournamentEntity;
 
 public interface ITournamentRepository {
-	List<Tournament> readList();
+	List<TournamentEntity> readList();
 }

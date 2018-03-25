@@ -1,4 +1,4 @@
-package de.svennetz.grasser.tippspiel.Member;
+package de.svennetz.grasser.tippspiel.memberSummaries.business;
 
 public final class ScoreValues {
 	public static final int Score_Gold = 5;

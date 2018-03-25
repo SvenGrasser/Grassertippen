@@ -12,10 +12,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import de.svennetz.grasser.tippspiel.beans.IMemberBean;
-import de.svennetz.grasser.tippspiel.beans.MemberBean;
-import de.svennetz.grasser.tippspiel.entities.Member;
-import de.svennetz.grasser.tippspiel.repositories.IMemberRepository;
+import de.svennetz.grasser.tippspiel.members.business.IMemberBean;
+import de.svennetz.grasser.tippspiel.members.business.MemberBean;
+import de.svennetz.grasser.tippspiel.members.entities.MemberEntity;
+import de.svennetz.grasser.tippspiel.members.repositories.IMemberRepository;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MemberBeanTest {
@@ -31,9 +31,9 @@ public class MemberBeanTest {
 
 	@Test
 	public void testGetMembers() {
-		Mockito.when(mockRepository.readList()).thenReturn(new ArrayList<Member>());
+		Mockito.when(mockRepository.readList()).thenReturn(new ArrayList<MemberEntity>());
 
-		List<Member> members = memberBean.getMembers();
+		List<MemberEntity> members = memberBean.getMembers();
 		
 		assertTrue(members != null);
 		assertTrue(Integer.compare(members.size(), 0) == 0);
@@ -41,9 +41,9 @@ public class MemberBeanTest {
 	
 	@Test
 	public void testGetMember() {
-		Mockito.when(mockRepository.readItem(1)).thenReturn(new Member());
+		Mockito.when(mockRepository.readItem(1)).thenReturn(new MemberEntity());
 
-		Member member = memberBean.getMember(1);
+		MemberEntity member = memberBean.getMember(1);
 		
 		assertTrue(member != null);
 	}

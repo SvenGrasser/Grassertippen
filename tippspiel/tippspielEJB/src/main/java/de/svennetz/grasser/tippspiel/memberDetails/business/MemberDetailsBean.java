@@ -1,4 +1,4 @@
-package de.svennetz.grasser.tippspiel.beans;
+package de.svennetz.grasser.tippspiel.memberDetails.business;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,12 +6,11 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import de.svennetz.grasser.tippspiel.Member.MemberDetails;
-import de.svennetz.grasser.tippspiel.entities.Tournament;
-import de.svennetz.grasser.tippspiel.entities.TournamentResult;
-import de.svennetz.grasser.tippspiel.repositories.IMemberRepository;
-import de.svennetz.grasser.tippspiel.repositories.ITournamentRepository;
-import de.svennetz.grasser.tippspiel.repositories.ITournamentResultRepository;
+import de.svennetz.grasser.tippspiel.members.repositories.IMemberRepository;
+import de.svennetz.grasser.tippspiel.tournamentResults.entities.TournamentResultEntity;
+import de.svennetz.grasser.tippspiel.tournamentResults.repositories.ITournamentResultRepository;
+import de.svennetz.grasser.tippspiel.tournaments.entities.TournamentEntity;
+import de.svennetz.grasser.tippspiel.tournaments.repositories.ITournamentRepository;
 
 @Stateless
 public class MemberDetailsBean implements IMemberDetailsBean {
@@ -25,9 +24,9 @@ public class MemberDetailsBean implements IMemberDetailsBean {
 	@Override
 	public List<MemberDetails> getMemberDetails(int id) {
 		List<MemberDetails> detailsList = new ArrayList<MemberDetails>();
-		List<Tournament> tournaments = tournamentRepository.readList();
+		List<TournamentEntity> tournaments = tournamentRepository.readList();
 		List<Integer> tournamentIdList = new ArrayList<Integer>();
-		for(Tournament tournament : tournaments) {
+		for(TournamentEntity tournament : tournaments) {
 			tournamentIdList.add(tournament.getId());
 			Integer position = getTournamentPosition(id, tournament.getId());			
 			MemberDetails details = new MemberDetails(tournament.getId(), tournament.getDescriptionShort());
@@ -35,13 +34,13 @@ public class MemberDetailsBean implements IMemberDetailsBean {
 			detailsList.add(details);			
 		}
 			
-		List<TournamentResult> tournamentResultList = tournamentResultRepository.readFilteredList(tournamentIdList, id);		
+		List<TournamentResultEntity> tournamentResultList = tournamentResultRepository.readFilteredList(tournamentIdList, id);		
 		fillDetailsList(detailsList, tournamentResultList);		
 		return detailsList;
 	}
 
-	private void fillDetailsList(List<MemberDetails> detailsList, List<TournamentResult> tournamentResultList) {
-		for(TournamentResult tr : tournamentResultList) {
+	private void fillDetailsList(List<MemberDetails> detailsList, List<TournamentResultEntity> tournamentResultList) {
+		for(TournamentResultEntity tr : tournamentResultList) {
 			MemberDetails details = getMemberDetails(tr, detailsList);
 			if(details != null) {
 				details.setScore(tr.getResult());
@@ -49,7 +48,7 @@ public class MemberDetailsBean implements IMemberDetailsBean {
 		}
 	}
 
-	private MemberDetails getMemberDetails(TournamentResult tr, List<MemberDetails> detailsList) {
+	private MemberDetails getMemberDetails(TournamentResultEntity tr, List<MemberDetails> detailsList) {
 		MemberDetails result = null;
 		for(MemberDetails m : detailsList) {
 			if(m.getTournamentId() == tr.getTournamentId()) {
@@ -61,7 +60,7 @@ public class MemberDetailsBean implements IMemberDetailsBean {
 	}
 	
 	private Integer getTournamentPosition(int memberId, int tournamentId) {
-		List<TournamentResult> result = tournamentResultRepository.readFilteredList(tournamentId, true);		
+		List<TournamentResultEntity> result = tournamentResultRepository.readFilteredList(tournamentId, true);		
 		Integer position = null;
 		for(int i = 0; i < result.size(); i++) {
 			if(result.get(i).getMemberId() == memberId) {

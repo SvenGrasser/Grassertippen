@@ -1,11 +1,11 @@
-package de.svennetz.grasser.tippspiel.beans;
+package de.svennetz.grasser.tippspiel.members.business;
 
 import java.util.List;
 
-import de.svennetz.grasser.tippspiel.entities.Member;
+import de.svennetz.grasser.tippspiel.members.entities.MemberEntity;
 
 public interface IMemberBean {
 	
-	List<Member> getMembers();
-	Member getMember(int id);
+	List<MemberEntity> getMembers();
+	MemberEntity getMember(int id);
 }
