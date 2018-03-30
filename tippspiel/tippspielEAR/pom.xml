@@ -8,7 +8,7 @@
 	</parent>
 	<artifactId>tippspielEAR</artifactId>
 	<packaging>ear</packaging>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>de.svennetz.grasser</groupId>
@@ -32,7 +32,9 @@
 			<artifactId>wildfly-jaxrs</artifactId>
 			<version>10.0.0.Final</version>
 		</dependency>
+
 	</dependencies>
+
 
 	<build>
 		<pluginManagement>
@@ -56,6 +58,11 @@
 								<artifactId>tippspielWAR</artifactId>
 								<contextRoot>/tippspiel</contextRoot>
 							</webModule>
+							<jarModule>
+								<groupId>de.svennetz.base.logging</groupId>
+								<artifactId>logging-jar</artifactId>
+								<includeInApplicationXml>true</includeInApplicationXml>
+							</jarModule>
 						</modules>
 					</configuration>
 				</plugin>

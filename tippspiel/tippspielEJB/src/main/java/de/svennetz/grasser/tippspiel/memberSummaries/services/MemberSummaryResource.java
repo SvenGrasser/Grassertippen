@@ -9,9 +9,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import de.svennetz.base.logging.Log;
 import de.svennetz.grasser.tippspiel.memberSummaries.business.IMemberSummaryBean;
 import de.svennetz.grasser.tippspiel.memberSummaries.business.MemberSummary;
-import de.svennetz.grasser.utility.logging.Log;
 
 @Path("members")
 @Stateless

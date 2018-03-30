@@ -10,9 +10,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import de.svennetz.base.logging.Log;
 import de.svennetz.grasser.tippspiel.memberDetails.business.IMemberDetailsBean;
 import de.svennetz.grasser.tippspiel.memberDetails.business.MemberDetails;
-import de.svennetz.grasser.utility.logging.Log;
 
 
 
