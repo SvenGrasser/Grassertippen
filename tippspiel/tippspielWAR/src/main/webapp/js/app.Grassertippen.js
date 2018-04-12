@@ -1,6 +1,6 @@
 var app = angular.module('appTippspiel', []);
 
-app.controller('start', function($scope, $http) {
+app.controller('summaryController', function($scope, $http) {
 	load($scope, $http);
 	
 	$scope.showDetails = function(memberSummary) {

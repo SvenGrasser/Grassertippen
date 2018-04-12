@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-ng-app="appTippspiel" data-ng-controller="start">
+<html data-ng-app="appTippspiel">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tippspiel Grassertippen</title>
@@ -10,8 +10,8 @@
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/app.Grassertippen.js"></script>
 </head>
-<body onload="load()">
-	<div class="page-header">
+<body id="body" data-ng-controller="summaryController" onload="load()">
+	<div id="header" class="page-header">
 		<!-- TITLE -->
 		<div class="container">
 			<div class="row">
@@ -27,39 +27,47 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="index.html">Home</a></li>
 				<li><a href="links.html">Links</a></li>
-				<li><a href="about.html">Ãœber uns</a></li>
+				<li><a href="about.html">Über uns</a></li>
 				<li><a href="impressum.html">Impressum</a></li>
 			</ul>
 		</div>
 	</nav>
 
 	<div id="content" class="container">
+
+		<div id="search-content" class="row" class="col-sm-12">
+			<div>
+				<label>Suche:</label> <input type="text" data-ng-model="search"
+					placeholder="Name eingeben" type="text">
+			</div>
+		</div>
+
 		<div class="row">
-			<div class="col-sm-12">				
-				<div>
-					<label>Suche:</label>
-					<input type="text" data-ng-model="search" placeholder="Name eingeben" type="text">
-				</div>
-				<div></br></div>
-				<div data-ng-repeat="memberSummary in memberSummaries | filter:{name:search}">
+			<div id="summary-content" class="col-sm-12">
+				<div
+					data-ng-repeat="memberSummary in memberSummaries | filter:{name:search}">
 					<div class="panel-group">
 						<div class="panel panel-default">
-							<div class="panel-heading">							
+							<div class="panel-heading">
 								<span class="glyphicon glyphicon-user"></span> <label>{{memberSummary.name}}</label>
 								- Gesamtpunktzahl: {{memberSummary.score}}
-								<div class="status-toggle" data-toggle="collapse" aria-expanded="{{memberSummary.isActive}}">
-  									Status: <span class="status-active glyphicon glyphicon-ok"></span>
-								    <span class="status-inactive glyphicon glyphicon-remove"></span>
-  								</div>
+								<div class="status-toggle" data-toggle="collapse"
+									aria-expanded="{{memberSummary.isActive}}">
+									Status: <span class="status-active glyphicon glyphicon-ok"></span>
+									<span class="status-inactive glyphicon glyphicon-remove"></span>
+								</div>
 							</div>
 							<div class="panel-body">
 								Gold: <label>{{memberSummary.gold}}</label> Silber: <label>{{memberSummary.silver}}</label>
 								Bronze: <label>{{memberSummary.bronze}}</label>
-								<button type="button" class="btn btn-default btn-xs details-toggle" data-toggle="collapse" data-target="#details{{$index + 1}}" aria-expanded="false"
-  									data-ng-click="showDetails(memberSummary)">
-  									<span class="details-collapsed glyphicon glyphicon-plus"></span>
-								    <span class="details-expanded glyphicon glyphicon-minus"></span>
-  								</button>
+								<button type="button"
+									class="btn btn-default btn-xs details-toggle"
+									data-toggle="collapse" data-target="#details{{$index + 1}}"
+									aria-expanded="false"
+									data-ng-click="showDetails(memberSummary)">
+									<span class="details-collapsed glyphicon glyphicon-plus"></span>
+									<span class="details-expanded glyphicon glyphicon-minus"></span>
+								</button>
 								<div id="details{{$index + 1}}" class="collapse">
 									<table class="table table-hover table-striped">
 										<thead>
@@ -70,7 +78,8 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr data-ng-repeat="memberDetail in memberSummary.memberDetails">
+											<tr
+												data-ng-repeat="memberDetail in memberSummary.memberDetails">
 												<td>{{memberDetail.tournamentDescriptionShort}}</td>
 												<td>{{memberDetail.score}}</td>
 												<td>{{memberDetail.position}}</td>
@@ -83,11 +92,11 @@
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 	<!-- FOOTER -->
 	<footer id="footer" class="bd-footer text-muted">
-
 		<div class="col-sm-12">{{tournaments}}</div>
 		<div class="col-sm-12">Berechnungsgrundlage der Gesamtpunktzahl:
 			Gold = 5 Punkte|Silber = 3 Punkte|Bronze = 1 Punkt</div>
