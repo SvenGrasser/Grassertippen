@@ -1,1 +1,3 @@
-
+#!groovy
+node {
+}
