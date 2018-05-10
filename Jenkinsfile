@@ -1,16 +1,12 @@
 #!groovy
-
 pipeline {
-    deleteDir()
     agent any    
     stages {
         stage('Build') {
             steps {                
-            withMaven(){
-              // Run the maven build
-              mvn clean install
-            }
-        }
+				mavenBuild([goals: '-U test', opts: '-Ddepcheck.scope=extern -Dmaven.test.failure.ignore']) 
+			}
+		}
         stage('Test') {
             steps {
                 echo 'Testing..'
