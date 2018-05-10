@@ -3,9 +3,9 @@ pipeline {
     agent any    
     stages {
         stage('Build') {
-            steps { 
-		withMaven() {
-		    sh 'mvn clean verify -B -U -e -fae -V -Dmaven.test.failure.ignore=true tippspiel/pom.xml'
+            steps {
+		withMaven()  {
+		    sh 'mvn test -f tippspiel/pom.xml'
 		}
 	    }
 	}
@@ -21,3 +21,4 @@ pipeline {
         }
     }
 }
+
