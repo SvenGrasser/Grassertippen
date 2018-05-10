@@ -5,9 +5,9 @@ pipeline {
         stage('Build') {
             steps { 
 		with maven() {
-		    sh 'mvn compile'
+		    sh 'mvn clean verify -B -U -e -fae -V -Dmaven.test.failure.ignore=true'
 		}
-	    }	
+	    }
 	}
         stage('Test') {
             steps {
