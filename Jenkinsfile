@@ -1,20 +1,14 @@
 #!groovy
 
 pipeline {
-    agent any
-    tools{
-        maven 'maven 3'
-        jdk 'java 8'
-    }
+    agent any    
     stages {
         stage('Build') {
-            steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install' 
-            }
-            post {
-                success {
-                    junit 'target/surefire-reports/**/*.xml' 
-                }
+            node('linux1') {
+                checkout scm
+                def mvnHome = tool 'maven-3'
+                sh "${mvnHome}/bin/mvn clean install -DskipTests"
+                stash 'working-copy'
             }
         }
         stage('Test') {
