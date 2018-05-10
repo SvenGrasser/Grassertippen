@@ -1,11 +1,10 @@
 #!groovy
 
 pipeline {
-    deleteDir();
     agent any
-    tools { 
-        maven 'Maven 3.6.0' 
-        jdk 'jdk8' 
+    tools{
+        maven 'maven 3'
+        jdk 'java 8'
     }
     stages {
         stage('Build') {
