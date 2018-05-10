@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Build') {
             steps { 
-		with maven() {
-		    sh 'mvn clean verify -B -U -e -fae -V -Dmaven.test.failure.ignore=true'
+		withMaven() {
+		    sh 'mvn clean verify -B -U -e -fae -V -Dmaven.test.failure.ignore=true tippspiel/pom.xml'
 		}
 	    }
 	}
