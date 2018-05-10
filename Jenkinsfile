@@ -1,6 +1,7 @@
 #!groovy
 pipeline {
-    agent any    
+    agent any  
+    deleteDir()
     stages {
         stage('Build') {
             steps {
