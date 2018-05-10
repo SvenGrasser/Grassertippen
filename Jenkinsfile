@@ -5,8 +5,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'cd tippspiel'
-                sh 'mvn clean install'
+                git url: 'https://github.com/cyrille-leclerc/multi-module-maven-project'
+ 
+                withMaven(
+                    // Maven installation declared in the Jenkins "Global Tool Configuration"
+                    maven: 'M3') {
+                  // Run the maven build
+                  sh "mvn clean install"
             }
         }
         stage('Test') {
