@@ -4,7 +4,6 @@ pipeline {
     stages {	
         stage('Build') {
             steps {
-		deleteDir()
 		withMaven()  {
 		    sh 'mvn compile -f tippspiel/pom.xml'
 		}
