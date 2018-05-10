@@ -1,8 +1,8 @@
 #!groovy
 pipeline {
-    agent any  
-    deleteDir()
+    agent any      
     stages {
+	deleteDir()
         stage('Build') {
             steps {
 		withMaven()  {
