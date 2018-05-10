@@ -5,6 +5,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                cd tippspiel;
                 sh 'mvn clean install'
             }
         }
