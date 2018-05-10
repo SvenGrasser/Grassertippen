@@ -1,14 +1,14 @@
 #!groovy
-
 pipeline {
     agent any    
     stages {
         stage('Build') {
-            steps {
-                sh 'cd tippspiel'
-                sh 'mvn clean install'
-            }
-        }
+            steps { 
+		withMaven() {
+		    sh 'mvn clean verify -B -U -e -fae -V -Dmaven.test.failure.ignore=true tippspiel/pom.xml'
+		}
+	    }
+	}
         stage('Test') {
             steps {
                 echo 'Testing..'
