@@ -3,10 +3,10 @@ pipeline {
     agent any    
     stages {
         stage('Build') {
-            steps {                
-				mavenBuild([goals: '-U test', opts: '-Ddepcheck.scope=extern -Dmaven.test.failure.ignore']) 
-			}
-		}
+            steps { 
+		sh 'mvn compile'
+	    }	
+	}
         stage('Test') {
             steps {
                 echo 'Testing..'
