@@ -1,10 +1,10 @@
 #!groovy
 pipeline {
     agent any      
-    stages {
-	deleteDir()
+    stages {	
         stage('Build') {
             steps {
+		deleteDir()
 		withMaven()  {
 		    sh 'mvn compile -f tippspiel/pom.xml'
 		}
