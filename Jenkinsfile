@@ -1,24 +1,27 @@
 #!groovy
 pipeline {
-    agent any      
-    stages {	
+    agent any    
+    stages {
         stage('Build') {
             steps {
 		withMaven()  {
-		    sh 'mvn compile -f tippspiel/pom.xml'
+		    sh 'mvn test -f tippspiel/pom.xml'
 		}
 	    }
 	}
         stage('Test') {
-		withMaven()  {
+            steps {
+                withMaven()  {
 		    sh 'mvn test -f tippspiel/pom.xml'
 		}
+            }
         }
         stage('Deploy') {
-		withMaven()  {
-		    sh 'mvn install -f tippspiel/pom.xml'
+            steps {
+                withMaven()  {
+		    sh 'mvn test -f tippspiel/pom.xml'
 		}
+            }
         }
     }
 }
-
