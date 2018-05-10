@@ -5,19 +5,19 @@ pipeline {
         stage('Build') {
             steps {
 		withMaven()  {
-		    sh 'mvn test -f tippspiel/pom.xml'
+		    sh 'mvn compile -f tippspiel/pom.xml'
 		}
 	    }
 	}
         stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
+		withMaven()  {
+		    sh 'mvn test -f tippspiel/pom.xml'
+		}
         }
         stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
+		withMaven()  {
+		    sh 'mvn install -f tippspiel/pom.xml'
+		}
         }
     }
 }
