@@ -72,16 +72,16 @@
 										<thead>
 											<tr>
 												<th>Wettbewerb</th>
-												<th>Punkte</th>
-												<th>Pos</th>
+												<th class="text-center">Pkte.</th>
+												<th class="text-center">Pos.</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr
 												data-ng-repeat="memberDetail in memberSummary.memberDetails">
 												<td>{{memberDetail.tournamentDescriptionShort}}</td>
-												<td>{{memberDetail.score}}</td>
-												<td>{{memberDetail.position}}</td>
+												<td class="text-center">{{memberDetail.score}}</td>
+												<td class="text-center">{{memberDetail.position}}</td>
 											</tr>
 										</tbody>
 									</table>
