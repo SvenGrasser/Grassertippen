@@ -33,10 +33,8 @@ pipeline {
 					])
 				}
 				if(userInput == true) {
-					echo 'Deploy'					
-					#withMaven()  {
-					#    sh 'mvn install -f tippspiel/pom.xml'
-					#}
+					echo 'Deploy'				
+					
 				}
             }
         }
