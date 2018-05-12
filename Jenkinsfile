@@ -23,5 +23,22 @@ pipeline {
                 }
             }
         }
+		stage('Release') {
+            steps {
+				def userInput = false
+				timeout(time: 60, unit: 'SECONDS') {
+					userInput = input(
+					id: 'Proceed1', message: 'Release?', parameters: [
+					[$class: 'BooleanParameterDefinition', defaultValue: false, description: '', name: 'Please confirm you agree with this']
+					])
+				}
+				if(userInput == true) {
+					echo 'Deploy'					
+					#withMaven()  {
+					#    sh 'mvn install -f tippspiel/pom.xml'
+					#}
+				}
+            }
+        }
     }
 }
