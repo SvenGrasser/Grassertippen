@@ -17,6 +17,9 @@ public class TournamentEntity {
 
 	@Column(name = "Description_Short")
 	private String descriptionShort;
+	
+	@Column(name = "TournamentType")
+	private int tournamentType;
 
 	public int getId() {
 		return id;
@@ -32,5 +35,13 @@ public class TournamentEntity {
 
 	public void setDescriptionShort(String descriptionShort) {
 		this.descriptionShort = descriptionShort;
+	}
+
+	public int getTournamentType() {
+		return tournamentType;
+	}
+
+	public void setTournamentType(int tournamentType) {
+		this.tournamentType = tournamentType;
 	}	
 }

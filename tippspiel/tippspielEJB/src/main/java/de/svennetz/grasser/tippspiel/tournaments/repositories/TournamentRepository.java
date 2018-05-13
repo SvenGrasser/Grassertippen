@@ -16,7 +16,7 @@ public class TournamentRepository implements ITournamentRepository {
 	
 	@Override
 	public List<TournamentEntity> readList() {
-		String statement = String.format("SELECT t FROM TournamentEntity t");
+		String statement = String.format("SELECT t FROM TournamentEntity t ORDER BY t.tournamentType ASC");
 		TypedQuery<TournamentEntity> queryTournament = entityManager.createQuery(statement, TournamentEntity.class);
 		return queryTournament.getResultList();
 	}

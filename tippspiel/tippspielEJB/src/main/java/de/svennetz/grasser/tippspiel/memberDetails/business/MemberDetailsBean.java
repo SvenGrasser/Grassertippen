@@ -62,10 +62,22 @@ public class MemberDetailsBean implements IMemberDetailsBean {
 	private Integer getTournamentPosition(int memberId, int tournamentId) {
 		List<TournamentResultEntity> result = tournamentResultRepository.readFilteredList(tournamentId, true);		
 		Integer position = null;
-		for(int i = 0; i < result.size(); i++) {
+		Integer positionGroup = 1;
+		Integer positionGroupCount = 0;
+		Integer currentResult = null;
+		for(int i = 0; i < result.size(); i++) {	
+			if(currentResult == null || Integer.compare(currentResult, result.get(i).getResult()) != 0) {
+				currentResult = result.get(i).getResult();
+				positionGroup += positionGroupCount;
+				positionGroupCount = 1;				
+			} else {
+				positionGroupCount += 1;
+			}
 			if(result.get(i).getMemberId() == memberId) {
-				position = i + 1;
+				position = positionGroup;
 				break;
+			} else {
+				
 			}
 		}
 		return position;

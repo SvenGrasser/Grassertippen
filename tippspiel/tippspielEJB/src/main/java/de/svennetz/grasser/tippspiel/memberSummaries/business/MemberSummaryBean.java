@@ -50,6 +50,7 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 			
 			if(currentResult == 0 || Integer.compare(tr.getResult(), (currentResult)) == -1) {
 				currentResultIndex = currentResultIndex + 1;
+				currentResult = tr.getResult();
 			}			
 		
 			if(currentResultIndex == 1) {
