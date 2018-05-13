@@ -20,6 +20,12 @@
 		<module>tippspielEJB</module>
 		<module>tippspielWAR</module>
 	</modules>
+	
+	<scm>
+		<url>https://github.com/SvenGrasser/Grassertippen</url>
+		<connection>scm:git:git://github.com/SvenGrasser/Grassertippen.git</connection>
+		<developerConnection>scm:git:git@github.com:SvenGrasser/Grassertippen.git</developerConnection>
+	</scm>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
