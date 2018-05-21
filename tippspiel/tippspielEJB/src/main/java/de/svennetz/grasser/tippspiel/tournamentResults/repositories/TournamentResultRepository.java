@@ -18,7 +18,7 @@ public class TournamentResultRepository implements ITournamentResultRepository {
 	@Override
 	public List<TournamentResultEntity> readSortedList() {
 		String statement = String.format(
-				"SELECT r FROM TournamentResultEntity r ORDER BY r.tournamentId, r.result DESC");
+				"SELECT r FROM TournamentResultEntity r ORDER BY r.tournamentId ASC, r.result DESC, matchDayVictory DESC");
 		return  entityManager.createQuery(statement, TournamentResultEntity.class).getResultList();
 	}
 
@@ -26,7 +26,7 @@ public class TournamentResultRepository implements ITournamentResultRepository {
 	public List<TournamentResultEntity> readFilteredList(int tournamentId, boolean sortedByResult) {
 		String statement = String.format("SELECT r FROM TournamentResultEntity r where r.tournamentId=:tournamentId");
 		if(sortedByResult) {
-			statement += " ORDER BY Result DESC";
+			statement += " ORDER BY r.result DESC, matchDayVictory DESC";
 		}
 		
 		TypedQuery<TournamentResultEntity> queryTournamentResult = entityManager

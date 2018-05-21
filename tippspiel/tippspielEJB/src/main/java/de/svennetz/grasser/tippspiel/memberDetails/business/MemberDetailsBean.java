@@ -44,6 +44,7 @@ public class MemberDetailsBean implements IMemberDetailsBean {
 			MemberDetails details = getMemberDetails(tr, detailsList);
 			if(details != null) {
 				details.setScore(tr.getResult());
+				details.setMatchDayVictory(tr.getMatchDayVictory());
 			}
 		}
 	}
@@ -65,9 +66,11 @@ public class MemberDetailsBean implements IMemberDetailsBean {
 		Integer positionGroup = 1;
 		Integer positionGroupCount = 0;
 		Integer currentResult = null;
+		Double currentMatchDayVictory = null;
 		for(int i = 0; i < result.size(); i++) {	
-			if(currentResult == null || Integer.compare(currentResult, result.get(i).getResult()) != 0) {
+			if(currentResult == null || Integer.compare(currentResult, result.get(i).getResult()) != 0 || result.get(i).getMatchDayVictory() < currentMatchDayVictory) {
 				currentResult = result.get(i).getResult();
+				currentMatchDayVictory = result.get(i).getMatchDayVictory();
 				positionGroup += positionGroupCount;
 				positionGroupCount = 1;				
 			} else {

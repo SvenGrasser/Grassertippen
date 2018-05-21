@@ -37,20 +37,23 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 		int currentTournamentId = 0;
 		int currentResultIndex = 0;
 		int currentResult = 0;
+		double currentMatchDayVictory = 0;
 		for (TournamentResultEntity tr : tournamentResults ) {
 			if(Integer.compare(currentTournamentId, tr.getTournamentId()) != 0) {
 				currentTournamentId = tr.getTournamentId();
 				currentResultIndex = 0;
 				currentResult = 0;
+				currentMatchDayVictory = 0;
 			}
 			
 			if(currentResultIndex > 3) {
 				continue;
 			}
 			
-			if(currentResult == 0 || Integer.compare(tr.getResult(), (currentResult)) == -1) {
+			if(isTournamentResultLessThanCurrentResult(currentResult, currentMatchDayVictory, tr)) {
 				currentResultIndex = currentResultIndex + 1;
 				currentResult = tr.getResult();
+				currentMatchDayVictory = tr.getMatchDayVictory();
 			}			
 		
 			if(currentResultIndex == 1) {
@@ -66,6 +69,10 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 				memberSummary.addScore(ScoreType.Bronze);
 			}
 		}
+	}
+
+	private boolean isTournamentResultLessThanCurrentResult(int currentResult, double currentMatchDayVictory, TournamentResultEntity tr) {
+		return currentResult == 0  || Integer.compare(tr.getResult(), (currentResult)) == -1 || currentMatchDayVictory == 0 || tr.getMatchDayVictory() < currentMatchDayVictory;
 	}
 
 	private List<MemberSummary> initMemberSummaries(List<MemberEntity> members) {

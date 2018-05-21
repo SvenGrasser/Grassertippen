@@ -73,6 +73,7 @@
 											<tr>
 												<th>Wettbewerb</th>
 												<th class="text-center">Pkte.</th>
+												<th class="text-center">T-Siege</th>
 												<th class="text-center">Pos.</th>
 											</tr>
 										</thead>
@@ -81,6 +82,7 @@
 												data-ng-repeat="memberDetail in memberSummary.memberDetails">
 												<td>{{memberDetail.tournamentDescriptionShort}}</td>
 												<td class="text-center">{{memberDetail.score}}</td>
+												<td class="text-center">{{memberDetail.matchDayVictory}}</td>
 												<td class="text-center">{{memberDetail.position}}</td>
 											</tr>
 										</tbody>

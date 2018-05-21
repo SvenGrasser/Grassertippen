@@ -5,6 +5,7 @@ public class MemberDetails {
 	private String tournamentDescriptionShort;
 	private Integer score;
 	private Integer position;
+	private Double matchDayVictory;
 
 	public MemberDetails(int tournamentId, String tournamentDescriptionShort) {
 		this.tournamentId = tournamentId;
@@ -30,5 +31,10 @@ public class MemberDetails {
 	public void setPosition(Integer position) {
 		this.position = position;
 	}
-
+	public Double getMatchDayVictory() {
+		return matchDayVictory;
+	}
+	public void setMatchDayVictory(Double matchDayVictory) {
+		this.matchDayVictory = matchDayVictory;
+	}
 }

@@ -20,9 +20,12 @@ public class TournamentResultEntity {
 	
 	@Column(name = "TournamentId")
 	private int tournamentId; 
-	
+
 	@Column(name = "Result")
 	private int result;
+
+	@Column(name = "MatchDayVictory")
+	private Double matchDayVictory;
 
 	public int getId() {
 		return id;
@@ -54,7 +57,13 @@ public class TournamentResultEntity {
 
 	public void setMemberId(int memberId) {
 		this.memberId = memberId;
-	} 
-	
+	}
 
+	public Double getMatchDayVictory() {
+		return matchDayVictory;
+	}
+
+	public void setMatchDayVictory(Double matchDayVictory) {
+		this.matchDayVictory = matchDayVictory;
+	} 
 }
