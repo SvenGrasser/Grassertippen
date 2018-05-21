@@ -19,7 +19,15 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 	private IMemberRepository memberRepository;
 	@EJB
 	private ITournamentResultRepository tournamentResultRepository;
+	
+	public MemberSummaryBean() {
 		
+	}
+	
+	public MemberSummaryBean(IMemberRepository memberRepository, ITournamentResultRepository tournamentResultRepository) {
+		this.memberRepository = memberRepository;
+		this.tournamentResultRepository = tournamentResultRepository;
+	}
 	
 	@Override
 	public List<MemberSummary> getMemberSummaryList() {
