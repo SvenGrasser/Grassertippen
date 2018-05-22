@@ -1,78 +1,109 @@
 <!DOCTYPE html>
-<html data-ng-app="appTippspiel" data-ng-controller="start">
+<html data-ng-app="appTippspiel">
 <head>
-	<title>Tippspiel Grassertippen</title>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/angular.min.js"></script>
-	<script type="text/javascript" src="js/app.Grassertippen.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tippspiel Grassertippen</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/grassertippen.css">
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/app.Grassertippen.js"></script>
 </head>
-<body>
-	<div class="jumbotron">
-		
+<body id="body" data-ng-controller="summaryController" onload="load()">
+	<div id="header" class="page-header">
 		<!-- TITLE -->
 		<div class="container">
 			<div class="row">
-				<h1>{{title}}</h1>
-				<h3>{{subtitle}}</h3>
+				<div class="col-sm-12">
+					<h1>Tippspiel Grassertippen</h1>
+				</div>
 			</div>
 		</div>
-		
-		<div class="container">		
-			<div class="row">
-				<div>						
-					<a role="button" class="btn btn-default" 
-						data-ng-click="loadMembers()" data-ng-disabled="isLoading">Aktualisieren</a>
-				</div>	
-			</div>
-		</div>
-		
-		<!-- USER-TABLE -->		
-		<div class="container">
-			<div class="row">
-				<table class="table table-hover table-striped">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Name</th>
-							<th>Gold</th>
-							<th>Silber</th>
-							<th>Bronze</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr data-ng-repeat="member in members">
-							<td>{{member.id}}</td>
-							<td>{{member.name}}</td>
-							<td>{{member.gold}}</td>
-							<td>{{member.silver}}</td>
-							<td>{{member.bronze}}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		
-		<!-- TOURNAMENT-TABLE -->		
-		<div class="container">
-			<div class="row">
-				<table class="table table-hover table-striped">
-					<thead>
-						<tr>
-							<th>Berücksichtigte Wettbewerbe</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr data-ng-repeat="tournament in tournaments">
-							<td>{{tournament.descriptionShort}}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		
 	</div>
 
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="index.html">Home</a></li>
+				<li><a href="links.html">Links</a></li>
+				<li><a href="impressum.html">Impressum</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div id="content" class="container">
+
+		<div id="search-content" class="row" class="col-sm-12">
+			<div>
+				<label>Suche:</label> <input type="text" data-ng-model="search"
+					placeholder="Name eingeben" type="text">
+			</div>
+		</div>
+
+		<div class="row">
+			<div id="summary-content" class="col-sm-12">
+				<div
+					data-ng-repeat="memberSummary in memberSummaries | filter:{name:search}">
+					<div class="panel-group">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<span class="glyphicon glyphicon-user"></span> <label>{{memberSummary.name}}</label>
+								- Gesamtpunktzahl: {{memberSummary.score}}
+								<div class="status-toggle" data-toggle="collapse"
+									aria-expanded="{{memberSummary.isActive}}">
+									Status: <span class="status-active glyphicon glyphicon-ok"></span>
+									<span class="status-inactive glyphicon glyphicon-remove"></span>
+								</div>
+							</div>
+							<div class="panel-body">
+								Gold: <label>{{memberSummary.gold}}</label> Silber: <label>{{memberSummary.silver}}</label>
+								Bronze: <label>{{memberSummary.bronze}}</label>
+								<button type="button"
+									class="btn btn-default btn-xs details-toggle"
+									data-toggle="collapse" data-target="#details{{$index + 1}}"
+									aria-expanded="false"
+									data-ng-click="showDetails(memberSummary)">
+									<span class="details-collapsed glyphicon glyphicon-plus"></span>
+									<span class="details-expanded glyphicon glyphicon-minus"></span>
+								</button>
+								<div id="details{{$index + 1}}" class="collapse">
+									<table class="table table-hover table-striped">
+										<thead>
+											<tr>
+												<th>Wettbewerb</th>
+												<th class="text-center">Pkte.</th>
+												<th class="text-center">T-Siege</th>
+												<th class="text-center">Pos.</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr
+												data-ng-repeat="memberDetail in memberSummary.memberDetails">
+												<td>{{memberDetail.tournamentDescriptionShort}}</td>
+												<td class="text-center">{{memberDetail.score}}</td>
+												<td class="text-center">{{memberDetail.matchDayVictory}}</td>
+												<td class="text-center">{{memberDetail.position}}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12">{{tournaments}}</div>
+				<div class="col-sm-12">Berechnungsgrundlage der
+					Gesamtpunktzahl: Gold = 5 Punkte|Silber = 3 Punkte|Bronze = 1 Punkt</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- FOOTER -->
+	<footer id="footer" class="bd-footer text-muted">
+		<div id="footerBranding" class="col-sm-12">
+			<div>developed by svennetz.de</div>
+		</div>
+	</footer>
 </body>
 </html>
