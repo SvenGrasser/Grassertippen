@@ -5,5 +5,5 @@ import java.util.List;
 import de.svennetz.grasser.tippspiel.tournaments.entities.TournamentEntity;
 
 public interface ITournamentRepository {
-	List<TournamentEntity> readList();
+	List<TournamentEntity> readList(Boolean sortByTournamentType);
 }

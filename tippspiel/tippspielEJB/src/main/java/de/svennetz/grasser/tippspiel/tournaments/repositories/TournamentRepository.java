@@ -15,10 +15,13 @@ public class TournamentRepository implements ITournamentRepository {
 	private EntityManager entityManager;
 	
 	@Override
-	public List<TournamentEntity> readList() {
-		String statement = String.format("SELECT t FROM TournamentEntity t ORDER BY t.tournamentType ASC");
+	public List<TournamentEntity> readList(Boolean sortByTournamentType) {
+		String statement = String.format("SELECT t FROM TournamentEntity t");		
+		if(sortByTournamentType) {
+			statement += " ORDER BY t.tournamentType ASC";
+		}
+		
 		TypedQuery<TournamentEntity> queryTournament = entityManager.createQuery(statement, TournamentEntity.class);
 		return queryTournament.getResultList();
 	}
-
 }

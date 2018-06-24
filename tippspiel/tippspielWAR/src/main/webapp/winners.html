@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-ng-app="appTippspiel" data-ng-controller="start">
+<html data-ng-app="appTippspielTournaments">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tippspiel Grassertippen</title>
@@ -8,9 +8,9 @@
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
-<script type="text/javascript" src="js/app.Grassertippen.js"></script>
+<script type="text/javascript" src="js/app.Grassertippen.Tournaments.js"></script>
 </head>
-<body id="body" onload="load()">
+<body id="body" data-ng-controller="tournamentController" onload="load()">
 	<div id="header" class="page-header">
 		<!-- TITLE -->
 		<div class="container">
@@ -26,8 +26,8 @@
 		<div class="container-fluid">
 			<ul class="nav navbar-nav">
 				<li><a href="index.html">Home</a></li>
-				<li><a href="winners.html">Wettbewerbe</a></li>
-				<li class="active"><a href="links.html">Links</a></li>
+				<li class="active"><a href="winners.html">Wettbewerbe</a></li>
+				<li><a href="links.html">Links</a></li>
 				<li><a href="impressum.html">Impressum</a></li>
 			</ul>
 		</div>
@@ -37,13 +37,27 @@
 	<div id="content" class="container">
 		<div class="row">
 			<div class="col-sm-12">
-				<a href="https://www.kicktipp.de/grassertippen" target="_blank">Kicktipp Grassertippen</a>
+				<div id="tournamentWinners">
+					<table class="table table-hover table-striped">
+						<thead>
+							<tr>
+								<th class="text-center">Wettbewerb</th>
+								<th class="text-center">Sieger</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-repeat="tournamentWinner in tournamentWinners">
+								<td>{{tournamentWinner.tournament}}</td>
+								<td class="text-center">{{tournamentWinner.winner}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
 
 
-	<!-- FOOTER -->
 	<!-- FOOTER -->
 	<footer id="footer" class="bd-footer text-muted">
 		<div id="footerBranding" class="col-sm-12">

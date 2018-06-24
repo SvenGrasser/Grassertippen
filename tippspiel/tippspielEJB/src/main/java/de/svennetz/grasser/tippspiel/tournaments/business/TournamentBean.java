@@ -24,11 +24,11 @@ public class TournamentBean implements ITournamentBean {
 	
 	@Override
 	public List<Tournament> getTournaments() {
-		List<TournamentEntity> tournamentEntities = tournamentRepository.readList();
+		List<TournamentEntity> tournamentEntities = tournamentRepository.readList(false);
 		
 		List<Tournament> tournaments = new ArrayList<Tournament>(tournamentEntities.size());
 		for(TournamentEntity tournamentEntity : tournamentEntities) {
-			Tournament tournament = new Tournament(tournamentEntity.getId(), tournamentEntity.getDescriptionShort());
+			Tournament tournament = new Tournament(tournamentEntity.getId(), tournamentEntity.getDescriptionShort(), tournamentEntity.getDescription());
 			tournaments.add(tournament);
 		}
 		
