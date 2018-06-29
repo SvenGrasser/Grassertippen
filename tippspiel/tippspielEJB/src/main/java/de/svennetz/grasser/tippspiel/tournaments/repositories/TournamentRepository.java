@@ -19,6 +19,8 @@ public class TournamentRepository implements ITournamentRepository {
 		String statement = String.format("SELECT t FROM TournamentEntity t");		
 		if(sortByTournamentType) {
 			statement += " ORDER BY t.tournamentType ASC";
+		} else {
+			statement += " ORDER BY t.date ASC";
 		}
 		
 		TypedQuery<TournamentEntity> queryTournament = entityManager.createQuery(statement, TournamentEntity.class);

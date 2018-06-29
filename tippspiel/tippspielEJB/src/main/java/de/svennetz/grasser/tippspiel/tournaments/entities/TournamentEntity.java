@@ -1,5 +1,7 @@
 package de.svennetz.grasser.tippspiel.tournaments.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +26,8 @@ public class TournamentEntity {
 	@Column(name = "Description")
 	private String description;
 
+	@Column(name = "Date")
+	private Date date;
 
 	public int getId() {
 		return id;
@@ -56,5 +60,13 @@ public class TournamentEntity {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}	
 }
