@@ -3,10 +3,11 @@ package de.svennetz.grasser.tippspiel.tournamentResults.business;
 public class TournamentWinner {	
 	private String tournament;	
 	private String winner;
+	private int result;
+	private Double matchDayVictory;
 	
-	public TournamentWinner(String tournament, String winner) {
+	public TournamentWinner(String tournament) {
 		setTournament(tournament);
-		setWinner(winner);
 	}
 
 	public String getTournament() {
@@ -23,6 +24,22 @@ public class TournamentWinner {
 
 	public void setWinner(String winner) {
 		this.winner = winner;
+	}
+
+	public int getResult() {
+		return result;
+	}
+
+	public void setResult(int result) {
+		this.result = result;
+	}
+
+	public Double getMatchDayVictory() {
+		return matchDayVictory;
+	}
+
+	public void setMatchDayVictory(Double matchDayVictory) {
+		this.matchDayVictory = matchDayVictory;
 	}
 
 }

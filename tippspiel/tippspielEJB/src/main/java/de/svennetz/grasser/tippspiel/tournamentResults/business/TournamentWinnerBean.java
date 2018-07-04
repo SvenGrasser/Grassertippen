@@ -30,19 +30,23 @@ public class TournamentWinnerBean implements ITournamentWinnerBean {
 		List<MemberEntity> members = memberBean.getMembers();
 		
 		for(Tournament tournament : tournaments) {			
-			List<TournamentResultEntity> tournamentResults = tournamentResultRepository.readFilteredList(tournament.getId(), true);
-			String winners = appendWinners(members, tournamentResults);
-			TournamentWinner tw = new TournamentWinner(tournament.getDescription(), winners);
+			TournamentWinner tw = getWinner(members, tournament);
 			tournamentWinners.add(tw);	
 		}
 		return tournamentWinners;
 	}
 
-	private String appendWinners(List<MemberEntity> members, List<TournamentResultEntity> tournamentResults) {
-		TournamentResultEntity topTournamentResultEntity = null;		
+	private TournamentWinner getWinner(List<MemberEntity> members, Tournament tournament) {
+		List<TournamentResultEntity> tournamentResults = tournamentResultRepository.readFilteredList(tournament.getId(), true);
+		TournamentWinner tournamentWinner = new TournamentWinner(tournament.getDescription());
+	    TournamentResultEntity topTournamentResultEntity = null;		
 		String winners = "";
+		int result = 0;
+		Double matchDayVictory = null;
 		for(TournamentResultEntity tournamentResultEntity : tournamentResults) {
 			if(topTournamentResultEntity == null) {
+				result = tournamentResultEntity.getResult();
+				matchDayVictory = tournamentResultEntity.getMatchDayVictory();
 				topTournamentResultEntity = tournamentResultEntity;
 				winners = appendWinner(members, winners, tournamentResultEntity);
 			}				
@@ -55,7 +59,10 @@ public class TournamentWinnerBean implements ITournamentWinnerBean {
 				break;
 			}
 		}
-		return winners;
+		tournamentWinner.setWinner(winners);
+		tournamentWinner.setResult(result);
+		tournamentWinner.setMatchDayVictory(matchDayVictory);
+		return tournamentWinner;
 	}
 
 	private String appendWinner(List<MemberEntity> members, String winners,
