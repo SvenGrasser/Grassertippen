@@ -10,22 +10,26 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import de.svennetz.base.logging.Log;
+import de.svennetz.grasser.tippspiel.base.BaseResource;
 import de.svennetz.grasser.tippspiel.memberSummaries.business.IMemberSummaryBean;
 import de.svennetz.grasser.tippspiel.memberSummaries.business.MemberSummary;
 
 @Path("members")
 @Stateless
-public class MemberSummaryResource {	
+public class MemberSummaryResource extends BaseResource {	
 	@EJB
-	private IMemberSummaryBean memberSummaryBean;
-	
-	private static final Log log = new Log(MemberSummaryResource.class);
-	
+	private IMemberSummaryBean memberSummaryBean;	
+	private static final Log log = new Log(MemberSummaryResource.class);	
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	public List<MemberSummary> getMemberSummaryList() {
-		log.info("getMemberSummaryList");
 		return memberSummaryBean.getMemberSummaryList();
 	}
+
+	@Override
+	protected Log getLog() {
+		return log;
+	}
 }
+
