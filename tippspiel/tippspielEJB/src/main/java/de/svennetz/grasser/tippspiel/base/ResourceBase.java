@@ -5,9 +5,12 @@ import javax.interceptor.InvocationContext;
 
 import de.svennetz.base.logging.Log;
 
-public abstract class BaseResource {
-
-	protected abstract Log getLog();
+public abstract class ResourceBase {
+	private Log log;
+	
+	public ResourceBase() {
+		this.log = new Log(this.getClass());
+	}
 
 	@AroundInvoke
 	protected Object doLog(InvocationContext ic) {
@@ -15,22 +18,22 @@ public abstract class BaseResource {
 		try {
 			String message = getApplicationLogInfo();
 			message += String.format(" %s=%s %s=%s", "action", "entering", "method", ic.getMethod().getName());
-			getLog().info(message);
+			log.info(message);
 			obj = ic.proceed();
 		} catch (Exception e) {
 			String message = getApplicationLogInfo();
 			message += String.format(" %s=%s %s=%s", "method", ic.getMethod().getName(), "exception", e.toString());
-			getLog().error(message);
+			log.error(message);
 		} finally {
 			String message = getApplicationLogInfo();
 			message += String.format(" %s=%s %s=%s", "action", "exiting", "method", ic.getMethod().getName());
-			getLog().info(message);
+			log.info(message);
 		}
 
 		return obj;
 	}
 	
-	private String getApplicationLogInfo( ) {
+	private String getApplicationLogInfo( ) {		
 		return String.format("%s=%s", "application", "tippspiel");
 	}
 }
