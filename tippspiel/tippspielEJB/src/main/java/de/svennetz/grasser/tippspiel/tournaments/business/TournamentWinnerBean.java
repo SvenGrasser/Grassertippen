@@ -28,17 +28,11 @@ public class TournamentWinnerBean implements ITournamentWinnerBean {
 
 	@Override
 	public List<TournamentWinner> getTournamentWinners() {
-		long startTime = System.currentTimeMillis();
-
 		List<TournamentWinner> tournamentWinners = new ArrayList<TournamentWinner>();
 		List<TournamentWinnerEntity> tournamentWinnerEntity = tournamentRepository.readList();
 		for (TournamentWinnerEntity tournament : tournamentWinnerEntity) {
 			addWinners(tournamentWinners, tournament);
 		}
-
-		long stopTime = System.currentTimeMillis();
-		long elapsed = (stopTime - startTime);
-		System.out.println(elapsed + " ms (Test)");
 
 		return tournamentWinners;
 	}
