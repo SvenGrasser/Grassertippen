@@ -1,4 +1,4 @@
-package de.svennetz.grasser.tippspiel.tournamentResults.services;
+package de.svennetz.grasser.tippspiel.tournaments.services;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import de.svennetz.grasser.tippspiel.base.ResourceBase;
-import de.svennetz.grasser.tippspiel.tournamentResults.business.ITournamentWinnerBean;
-import de.svennetz.grasser.tippspiel.tournamentResults.business.TournamentWinner;
+import de.svennetz.grasser.tippspiel.tournaments.business.ITournamentWinnerBean;
+import de.svennetz.grasser.tippspiel.tournaments.business.TournamentWinner;
 
 @Path("tournamentWinners")
 @Stateless

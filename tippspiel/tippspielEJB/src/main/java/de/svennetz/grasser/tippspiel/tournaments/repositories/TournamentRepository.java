@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import de.svennetz.grasser.tippspiel.tournaments.entities.TournamentEntity;
+import de.svennetz.grasser.tippspiel.tournaments.entities.TournamentWinnerEntity;
 
 @Stateless
 public class TournamentRepository implements ITournamentRepository {
@@ -25,5 +26,11 @@ public class TournamentRepository implements ITournamentRepository {
 		
 		TypedQuery<TournamentEntity> queryTournament = entityManager.createQuery(statement, TournamentEntity.class);
 		return queryTournament.getResultList();
+	}
+
+	@Override
+	public List<TournamentWinnerEntity> readList() {
+		TypedQuery<TournamentWinnerEntity> query = entityManager.createQuery("SELECT DISTINCT t FROM TournamentWinnerEntity t INNER JOIN t.tournamentWinnerResults tr INNER JOIN tr.member m WHERE t.id=tr.tournamentId ORDER BY t.date ASC", TournamentWinnerEntity.class);
+	    return query.getResultList();
 	}
 }

@@ -1,4 +1,4 @@
-package de.svennetz.grasser.tippspiel.tournamentResults.business;
+package de.svennetz.grasser.tippspiel.tournaments.business;
 
 import java.util.List;
 
