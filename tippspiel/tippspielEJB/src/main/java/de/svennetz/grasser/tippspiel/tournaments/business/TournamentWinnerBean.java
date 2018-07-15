@@ -6,23 +6,13 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import de.svennetz.grasser.tippspiel.members.business.IMemberBean;
-import de.svennetz.grasser.tippspiel.members.entities.MemberEntity;
-import de.svennetz.grasser.tippspiel.tournamentResults.entities.TournamentResultEntity;
 import de.svennetz.grasser.tippspiel.tournamentResults.entities.TournamentWinnerResultEntity;
-import de.svennetz.grasser.tippspiel.tournamentResults.repositories.ITournamentResultRepository;
 import de.svennetz.grasser.tippspiel.tournaments.entities.TournamentWinnerEntity;
 import de.svennetz.grasser.tippspiel.tournaments.repositories.ITournamentRepository;
 
 @Stateless
 public class TournamentWinnerBean implements ITournamentWinnerBean {
 
-	@EJB
-	private IMemberBean memberBean;
-	@EJB
-	private ITournamentBean tournamentBean;
-	@EJB
-	private ITournamentResultRepository tournamentResultRepository;
 	@EJB
 	private ITournamentRepository tournamentRepository;
 

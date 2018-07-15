@@ -15,6 +15,7 @@ public abstract class ResourceBase {
 	@AroundInvoke
 	protected Object doLog(InvocationContext ic) {
 		Object obj = null;
+		long startTime = System.currentTimeMillis();
 		try {
 			String message = getApplicationLogInfo();
 			message += String.format(" %s=%s %s=%s", "action", "entering", "method", ic.getMethod().getName());
@@ -25,8 +26,10 @@ public abstract class ResourceBase {
 			message += String.format(" %s=%s %s=%s", "method", ic.getMethod().getName(), "exception", e.toString());
 			log.error(message);
 		} finally {
+			long stopTime = System.currentTimeMillis();
+			long elapsed = (stopTime - startTime);
 			String message = getApplicationLogInfo();
-			message += String.format(" %s=%s %s=%s", "action", "exiting", "method", ic.getMethod().getName());
+			message += String.format(" %s=%s %s=%s %s=%s", "action", "exiting", "method", ic.getMethod().getName(), "duration", elapsed);
 			log.info(message);
 		}
 
