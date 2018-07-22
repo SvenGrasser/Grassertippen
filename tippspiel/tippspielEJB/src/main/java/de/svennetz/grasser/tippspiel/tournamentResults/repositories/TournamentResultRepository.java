@@ -16,19 +16,16 @@ public class TournamentResultRepository implements ITournamentResultRepository {
 	private EntityManager entityManager;	
 	
 	@Override
-	public List<TournamentResultEntity> readSortedList() {
+	public List<TournamentResultEntity> findAll() {
 		String statement = String.format(
 				"SELECT r FROM TournamentResultEntity r ORDER BY r.tournamentId ASC, r.result DESC, matchDayVictory DESC");
 		return  entityManager.createQuery(statement, TournamentResultEntity.class).getResultList();
 	}
 
 	@Override
-	public List<TournamentResultEntity> readFilteredList(int tournamentId, boolean sortedByResult) {
-		String statement = String.format("SELECT r FROM TournamentResultEntity r where r.tournamentId=:tournamentId");
-		if(sortedByResult) {
-			statement += " ORDER BY r.result DESC, matchDayVictory DESC";
-		}
-		
+	public List<TournamentResultEntity> findAllByTournamentId(int tournamentId) {
+		String statement = String.format("SELECT r FROM TournamentResultEntity r where r.tournamentId=:tournamentId ORDER BY r.result DESC, matchDayVictory DESC");
+				
 		TypedQuery<TournamentResultEntity> queryTournamentResult = entityManager
 				.createQuery(statement, TournamentResultEntity.class);
 		queryTournamentResult.setParameter("tournamentId", tournamentId);		
@@ -36,7 +33,7 @@ public class TournamentResultRepository implements ITournamentResultRepository {
 	}
 
 	@Override
-	public List<TournamentResultEntity> readFilteredList(List<Integer> tournamentIdList, int memberId) {
+	public List<TournamentResultEntity> findAllByMemberAndTournaments(List<Integer> tournamentIdList, int memberId) {
 		String statement = String.format(
 				"SELECT r FROM TournamentResultEntity r where r.memberId = :memberId and r.tournamentId in (:tournamentIdList)");
 		TypedQuery<TournamentResultEntity> queryTournamentResult = entityManager

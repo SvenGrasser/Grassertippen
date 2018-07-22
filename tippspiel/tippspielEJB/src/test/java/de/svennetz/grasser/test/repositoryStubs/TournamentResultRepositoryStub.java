@@ -26,18 +26,18 @@ private List<TournamentResultEntity> tournamentResultEntityList = new ArrayList<
 		}
 	}
 	@Override
-	public List<TournamentResultEntity> readSortedList() {
+	public List<TournamentResultEntity> findAll() {
 		return this.tournamentResultEntityList;
 	}
 
 	@Override
-	public List<TournamentResultEntity> readFilteredList(int tournamentId, boolean sortedByResult) {
+	public List<TournamentResultEntity> findAllByTournamentId(int tournamentId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<TournamentResultEntity> readFilteredList(List<Integer> tournamentIdList, int memberId) {
+	public List<TournamentResultEntity> findAllByMemberAndTournaments(List<Integer> tournamentIdList, int memberId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

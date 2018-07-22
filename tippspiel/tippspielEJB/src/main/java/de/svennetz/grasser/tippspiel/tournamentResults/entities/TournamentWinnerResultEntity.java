@@ -39,7 +39,7 @@ public class TournamentWinnerResultEntity {@Id
 		this.member = member;
 	}
 
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne
 	@JoinColumn(name="MemberId", referencedColumnName="id", insertable=false, updatable=false)
 	private MemberEntity member;
 

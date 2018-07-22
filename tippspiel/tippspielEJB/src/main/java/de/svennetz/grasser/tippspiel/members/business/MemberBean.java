@@ -23,11 +23,11 @@ public class MemberBean implements IMemberBean {
 	
 	@Override
 	public List<MemberEntity> getMembers() {
-		return memberRepository.readList();
+		return memberRepository.findAll();
 	}
 	
 	@Override
 	public MemberEntity getMember(int id) {
-		return memberRepository.readItem(id);
+		return memberRepository.findById(id);
 	}
 }

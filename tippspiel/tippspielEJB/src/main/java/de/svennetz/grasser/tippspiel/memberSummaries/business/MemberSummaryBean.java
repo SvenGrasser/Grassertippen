@@ -31,8 +31,8 @@ public class MemberSummaryBean implements IMemberSummaryBean {
 	
 	@Override
 	public List<MemberSummary> getMemberSummaryList() {
-		List<MemberEntity> members = memberRepository.readList();
-		List<TournamentResultEntity> tournamentResults = tournamentResultRepository.readSortedList();
+		List<MemberEntity> members = memberRepository.findAll();
+		List<TournamentResultEntity> tournamentResults = tournamentResultRepository.findAll();
 		List<MemberSummary> memberSummaries = initMemberSummaries(members);
 		
 		fillMemberSummaries(tournamentResults, memberSummaries);

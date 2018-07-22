@@ -24,7 +24,7 @@ public class TournamentBean implements ITournamentBean {
 	
 	@Override
 	public List<Tournament> getTournaments() {
-		List<TournamentEntity> tournamentEntities = tournamentRepository.readList(false);
+		List<TournamentEntity> tournamentEntities = tournamentRepository.findAll();
 		
 		List<Tournament> tournaments = new ArrayList<Tournament>(tournamentEntities.size());
 		for(TournamentEntity tournamentEntity : tournamentEntities) {

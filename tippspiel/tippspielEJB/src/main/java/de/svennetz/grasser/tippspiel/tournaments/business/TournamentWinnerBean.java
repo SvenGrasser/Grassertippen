@@ -8,18 +8,18 @@ import javax.ejb.Stateless;
 
 import de.svennetz.grasser.tippspiel.tournamentResults.entities.TournamentWinnerResultEntity;
 import de.svennetz.grasser.tippspiel.tournaments.entities.TournamentWinnerEntity;
-import de.svennetz.grasser.tippspiel.tournaments.repositories.ITournamentRepository;
+import de.svennetz.grasser.tippspiel.tournaments.repositories.ITournamentWinnerRepository;
 
 @Stateless
 public class TournamentWinnerBean implements ITournamentWinnerBean {
 
 	@EJB
-	private ITournamentRepository tournamentRepository;
+	private ITournamentWinnerRepository tournamentWinnerRepository;
 
 	@Override
 	public List<TournamentWinner> getTournamentWinners() {
 		List<TournamentWinner> tournamentWinners = new ArrayList<TournamentWinner>();
-		List<TournamentWinnerEntity> tournamentWinnerEntity = tournamentRepository.readList();
+		List<TournamentWinnerEntity> tournamentWinnerEntity = tournamentWinnerRepository.findAll();
 		for (TournamentWinnerEntity tournament : tournamentWinnerEntity) {
 			addWinners(tournamentWinners, tournament);
 		}
