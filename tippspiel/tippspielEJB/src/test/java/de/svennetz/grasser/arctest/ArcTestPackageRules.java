@@ -8,6 +8,11 @@ import com.tngtech.archunit.junit.ArchRules;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.junit.ArchUnitRunner;
 
+import de.svennetz.base.test.archunit.PackageRules.BusinessRules;
+import de.svennetz.base.test.archunit.PackageRules.EntityRules;
+import de.svennetz.base.test.archunit.PackageRules.RepositoryRules;
+import de.svennetz.base.test.archunit.PackageRules.ServiceRules;
+
 @RunWith(ArchUnitRunner.class)
 @AnalyzeClasses(packages = "de.svennetz.grasser.tippspiel", importOptions = ImportOption.DontIncludeTests.class)
 public class ArcTestPackageRules {
