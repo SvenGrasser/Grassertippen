@@ -44,14 +44,7 @@
 			<version>1.9.5</version>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>com.tngtech.archunit</groupId>
-			<artifactId>archunit-junit</artifactId>
-			<version>0.8.0</version>
-			<scope>test</scope>
-		</dependency>		
-		
+	
 		<dependency>
 			<groupId>de.svennetz.base.test</groupId>
 			<artifactId>arch-unit-base</artifactId>
