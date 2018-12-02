@@ -1,0 +1,31 @@
+<div id="content" class="container">
+  <div class="row">
+    <div id="summary-content" class="col-sm-12">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th class="text-center">Aktiv</th>
+            <th class="text-left">Name</th>
+            <th class="text-center">Gesamt-Pkte.</th>
+            <th class="text-center">Gold</th>
+            <th class="text-center">Silber</th>
+            <th class="text-center">Bronze</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let memberSummary of memberSummaries | async">
+            <td class="text-center">
+              <input type="checkbox" [checked]="memberSummary.isActive" disabled readonly />
+            </td>
+            <td class="text-left">{{memberSummary.name}}</td>
+            <td class="text-center">{{memberSummary.score}}</td>
+            <td class="text-center">{{memberSummary.gold}}</td>
+            <td class="text-center">{{memberSummary.silver}}</td>
+            <td class="text-center">{{memberSummary.bronze}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <app-tournament class="col-sm-12"></app-tournament>
+</div>
