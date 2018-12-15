@@ -1,0 +1,14 @@
+#header {
+	background-color: #940b03!important;
+	margin-left: 10px!important;	
+	margin-right: 10px!important;
+	border-radius: 5px;		
+}
+
+#content {
+	padding-bottom:30px; /* Height of the footer element */	
+}
+
+#navItem {
+	margin-right: 5px
+}
