@@ -13,13 +13,16 @@ import { MemberSummaryService } from './shared/member-summary.service';
 
 import { TournamentWinnerComponent } from './tournament-winner/tournament-winner.component';
 import { TournamentWinnerService } from './shared/tournament-winner.service';
+import { MemberDetailsService } from './shared/member-details.service';
+import { MemberDetailsComponent } from './member-details/member-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TournamentComponent,
     MemberSummaryComponent,
-    TournamentWinnerComponent    
+    TournamentWinnerComponent,
+    MemberDetailsComponent,        
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,7 @@ import { TournamentWinnerService } from './shared/tournament-winner.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [TournamentWinnerService, TournamentService, MemberSummaryService],
+  providers: [TournamentWinnerService, TournamentService, MemberSummaryService, MemberDetailsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -30,3 +30,7 @@ h1 {
 #footerBranding {
 	font-weight: bold;
 }
+
+#details-title {
+    color: brown!important;
+}

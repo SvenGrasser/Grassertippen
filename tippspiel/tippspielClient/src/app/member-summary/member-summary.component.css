@@ -1,0 +1,21 @@
+#memberSummaryDetails {
+    margin: 10px 0px 0px 0px!important;
+
+}
+
+#member {
+    font-weight: bold;
+}
+
+#medal {
+    font-weight: bold;
+}
+
+#status {
+    vertical-align: middle!important;
+    margin: 0px 0px 0px 4px!important;
+}
+
+#content {
+    margin: 0px 0px 0px 0px!important;
+}

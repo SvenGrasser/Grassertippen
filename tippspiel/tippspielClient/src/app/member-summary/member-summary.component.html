@@ -1,31 +1,23 @@
 <div id="content" class="container">
   <div class="row">
-    <div id="summary-content" class="col-sm-12">
-      <table class="table table-hover table-striped">
-        <thead>
-          <tr>
-            <th class="text-center">Aktiv</th>
-            <th class="text-left">Name</th>
-            <th class="text-center">Gesamt-Pkte.</th>
-            <th class="text-center">Gold</th>
-            <th class="text-center">Silber</th>
-            <th class="text-center">Bronze</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let memberSummary of memberSummaries | async">
-            <td class="text-center">
-              <input type="checkbox" [checked]="memberSummary.isActive" disabled readonly />
-            </td>
-            <td class="text-left">{{memberSummary.name}}</td>
-            <td class="text-center">{{memberSummary.score}}</td>
-            <td class="text-center">{{memberSummary.gold}}</td>
-            <td class="text-center">{{memberSummary.silver}}</td>
-            <td class="text-center">{{memberSummary.bronze}}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="list-group" class="col-sm-4">
+      <div *ngFor="let memberSummary of memberSummaries | async">
+        <div id="memberSummaryItem" class="list-group-item list-group-item-action" [class.selected]="memberSummary === selectedMemberSummary"
+        (click)="onSelect(memberSummary)">
+          <div>
+            <label id="member">{{memberSummary.name}}</label>
+            <label> - Gesamtpunktzahl: {{memberSummary.score}}</label>
+            <div class="checkbox">
+                Status:<input id="status" type="checkbox" [checked]="memberSummary.isActive" disabled readonly>
+            </div>
+            Gold: <label id="medal">{{memberSummary.gold}}</label>
+            Silber: <label id="medal">{{memberSummary.silver}}</label>
+            Bronze: <label id="medal">{{memberSummary.bronze}}</label>
+          </div>
+        </div>
+      </div>
     </div>
+    <app-member-details class="col-sm-8" [memberSummary]="selectedMemberSummary" [memberDetails]="currentMemberDetails"></app-member-details>
   </div>
   <app-tournament class="col-sm-12"></app-tournament>
 </div>
