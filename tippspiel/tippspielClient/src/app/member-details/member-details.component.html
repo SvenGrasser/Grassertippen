@@ -3,17 +3,17 @@
     <thead>
       <tr>
         <th class="text-left">Wettbewerb</th>
-        <th class="text-left">Score</th>
-        <th class="text-left">T-Siege</th>
-        <th class="text-left">Pos.</th>
+        <th class="text-center">Score</th>
+        <th class="text-center">T-Siege</th>
+        <th class="text-center">Pos.</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let memberDetail of memberDetails | async">
         <td class="text-left">{{memberDetail.tournamentDescriptionShort}}</td>
-        <td class="text-left">{{memberDetail.score}}</td>
-        <td class="text-left">{{memberDetail.matchDayVictory}}</td>
-        <td class="text-left">{{memberDetail.position}}</td>
+        <td class="text-center">{{memberDetail.score}}</td>
+        <td class="text-center">{{memberDetail.matchDayVictory}}</td>
+        <td class="text-center">{{memberDetail.position}}</td>
       </tr>
     </tbody>
   </table>
