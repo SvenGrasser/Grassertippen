@@ -9,7 +9,7 @@ export class MemberDetailsService {
   }
 
   public getMemberDetail(id: number): Observable<MemberDetails[]> {
-    let url = 'http://localhost:8080/tippspiel/api/v1/members/' + id;
+    let url = 'https://grassertippen.club/tippspiel/api/v1/members/' + id;
     console.log(this.http.get(url)
     .map((resp: Response) => resp.json()));
     return this.http.get(url)
