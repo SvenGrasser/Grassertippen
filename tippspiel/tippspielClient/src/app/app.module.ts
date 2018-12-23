@@ -17,6 +17,8 @@ import { MemberDetailsService } from './shared/member-details.service';
 import { MemberDetailsComponent } from './member-details/member-details.component';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { LinksComponent } from './links/links.component';
+import { ImpressumComponent } from './impressum/impressum.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     TournamentComponent,
     MemberSummaryComponent,
     TournamentWinnerComponent,
-    MemberDetailsComponent,        
+    MemberDetailsComponent,
+    LinksComponent,
+    ImpressumComponent,      
   ],
   imports: [
     BrowserModule,

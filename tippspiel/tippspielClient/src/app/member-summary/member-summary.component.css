@@ -1,5 +1,5 @@
 #memberSummaryItem {
-    margin: 0px 0px 10px 0px!important;
+    margin: 10px -15px 10px -15px!important;
 }
 
 #member {
@@ -25,12 +25,11 @@
 
 #searchContent {
     padding: 10px 0px 10px 10px!important;
-    margin: 10px 0px 0px 0px!important;
+    margin: 10px -15px 0px -15px!important;
     background-color: lightgray;	
 	border-radius: 5px;
 }
 
 #searchControl {
-    margin: 0px 0px 0px 4px!important;
+    margin: 0px -30px 0px 4px!important;
 }
-

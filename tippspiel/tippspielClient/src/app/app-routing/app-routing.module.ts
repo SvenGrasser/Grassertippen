@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { MemberSummaryComponent } from '../member-summary/member-summary.component';
 import { TournamentWinnerComponent } from '../tournament-winner/tournament-winner.component';
+import { LinksComponent } from '../links/links.component';
+import { ImpressumComponent } from '../impressum/impressum.component';
 
 const routes: Routes = [
   {
@@ -14,6 +16,14 @@ const routes: Routes = [
   {
     path: 'tournaments',
     component: TournamentWinnerComponent
+  },
+  {
+    path: 'links',
+    component: LinksComponent
+  },
+  {
+    path: 'impressum',
+    component: ImpressumComponent
   }
 ];
 

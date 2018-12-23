@@ -1,10 +1,10 @@
-<div id="content" class="container">
+<div class="container">
   <div id="searchContent">
     <label>Suche:</label><input id="searchControl" type="text" [(ngModel)]="searchText" placeholder="Suchtext eingeben"
       type="text">
   </div>
 
-  <div id="dataContent" class="row">
+  <div id="dataCon tent" class="row">
     <div class="card-group" class="col-sm-12">
       <div id="memberSummaryItem" class="card" *ngFor="let memberSummary of memberSummaries | async | filter : searchText">
         <div class="card-header">
@@ -19,7 +19,7 @@
             Bronze: <label id="medal">{{memberSummary.bronze}}</label>
           </div>
           <div>
-            Details:<input id="status" type="checkbox" (click)="onSelect(memberSummary)" [checked]="memberSummary.IsDetailsVisible">
+            Details anzeigen:<input id="status" type="checkbox" (click)="onSelect(memberSummary)" [checked]="memberSummary.IsDetailsVisible">
           </div>
         </div>
         <div class="card-body" *ngIf="memberSummary.IsDetailsVisible">
