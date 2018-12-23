@@ -1,9 +1,12 @@
-#memberSummaryDetails {
-    margin: 10px 0px 0px 0px!important;
-
+#memberSummaryItem {
+    margin: 0px 0px 10px 0px!important;
 }
 
 #member {
+    font-weight: bold;
+}
+
+#score {
     font-weight: bold;
 }
 
@@ -16,6 +19,18 @@
     margin: 0px 0px 0px 4px!important;
 }
 
-#content {
-    margin: 0px 0px 0px 0px!important;
+#dataContent {
+    margin: 10px 0px 0px 0px!important;
 }
+
+#searchContent {
+    padding: 10px 0px 10px 10px!important;
+    margin: 10px 0px 0px 0px!important;
+    background-color: lightgray;	
+	border-radius: 5px;
+}
+
+#searchControl {
+    margin: 0px 0px 0px 4px!important;
+}
+

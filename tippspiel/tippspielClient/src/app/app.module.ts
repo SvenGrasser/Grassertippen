@@ -16,6 +16,8 @@ import { TournamentWinnerService } from './shared/tournament-winner.service';
 import { MemberDetailsService } from './shared/member-details.service';
 import { MemberDetailsComponent } from './member-details/member-details.component';
 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,8 @@ import { MemberDetailsComponent } from './member-details/member-details.componen
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    Ng2SearchPipeModule
   ],
   providers: [TournamentWinnerService, TournamentService, MemberSummaryService, MemberDetailsService],
   bootstrap: [AppComponent]
