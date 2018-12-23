@@ -9,7 +9,7 @@ export class TournamentService {
   }
 
   public getTournaments(): Observable<Tournament[]> {
-    let url = 'http://localhost:8080/tippspiel/api/v1/tournaments';
+    let url = '/tippspiel/api/v1/tournaments';
     return this.http.get(url)
       .map((resp: Response) => resp.json());
   }

@@ -9,10 +9,10 @@ export class MemberSummaryService {
   }
 
   public getMemberSummaries(): Observable<MemberSummary[]> {
-    let url = 'http://localhost:8080/tippspiel/api/v1/members';
+    let url = '/tippspiel/api/v1/members';
     console.log(this.http.get(url)
     .map((resp: Response) => resp.json()));
     return this.http.get(url)
       .map((resp: Response) => resp.json());
-  }
+  } 
 }

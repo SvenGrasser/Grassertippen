@@ -10,9 +10,9 @@ import { TournamentWinner } from '../shared/TournamentWinner';
 })
 export class TournamentWinnerComponent implements OnInit {
   tournamentWinners: Observable<TournamentWinner[]>;
-  constructor(private tournamentWinnerSevice: TournamentWinnerService) { }
+  constructor(private tournamentWinnerService: TournamentWinnerService) { }
 
   ngOnInit() {
-    this.tournamentWinners = this.tournamentWinnerSevice.getTournamentWinners();
+    this.tournamentWinners = this.tournamentWinnerService.getTournamentWinners();
   }
 }

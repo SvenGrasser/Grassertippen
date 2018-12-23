@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MemberSummary } from '../shared/memberSummary';
+import { MemberDetails } from '../shared/memberDetails';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-member-details',
@@ -8,7 +9,7 @@ import { MemberSummary } from '../shared/memberSummary';
   inputs: ['memberDetails'],
 })
 export class MemberDetailsComponent implements OnInit {
-  @Input() memberSummary: MemberSummary;
+  @Input() memberDetails: Observable<MemberDetails[]>;
   constructor() { }
 
   ngOnInit() {
