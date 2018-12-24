@@ -1,4 +1,6 @@
-<div id="tournamentContent" class="container">
-  <label  *ngFor="let tournament of tournaments | async">{{tournament.descriptionShort}} | </label>
-  <div>Berechnungsgrundlage der Gesamtpunktzahl: Gold = 5 Punkte|Silber = 3 Punkte|Bronze = 1 Punkt</div>
+<div class="container">
+  <div id="tournamentContent">
+    <label id="legendLabel" *ngFor="let tournament of tournaments | async">{{tournament.descriptionShort}} | </label>
+    <label id="legendLabel">Berechnungsgrundlage der Gesamtpunktzahl: Gold = 5 Punkte|Silber = 3 Punkte|Bronze = 1 Punkt</label>
+  </div>
 </div>
