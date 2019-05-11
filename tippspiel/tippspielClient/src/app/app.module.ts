@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -37,7 +38,8 @@ import { ImpressumComponent } from './impressum/impressum.component';
     AppRoutingModule, 
     Ng2SearchPipeModule
   ],
-  providers: [TournamentWinnerService, TournamentService, MemberSummaryService, MemberDetailsService],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, TournamentWinnerService, TournamentService, MemberSummaryService, MemberDetailsService],
   bootstrap: [AppComponent]
+  
 })
 export class AppModule { }
