@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import de.svennetz.grasser.tippspiel.tournamentResults.entities.TournamentWinnerResultEntity;
+import de.svennetz.grasser.tippspiel.tournaments.entities.TournamentAverageAllTippers;
 import de.svennetz.grasser.tippspiel.tournaments.entities.TournamentWinnerEntity;
 import de.svennetz.grasser.tippspiel.tournaments.repositories.ITournamentWinnerRepository;
 
@@ -20,15 +21,17 @@ public class TournamentWinnerBean implements ITournamentWinnerBean {
 	public List<TournamentWinner> getTournamentWinners() {
 		List<TournamentWinner> tournamentWinners = new ArrayList<TournamentWinner>();
 		List<TournamentWinnerEntity> tournamentWinnerEntity = tournamentWinnerRepository.findAll();
+		List<TournamentAverageAllTippers> averageTippers = tournamentWinnerRepository.findAllAverageTippers();
 		for (TournamentWinnerEntity tournament : tournamentWinnerEntity) {
-			addWinners(tournamentWinners, tournament);
+			addWinners(tournamentWinners, tournament, averageTippers);
 		}
 
 		return tournamentWinners;
 	}
 
-	private void addWinners(List<TournamentWinner> tournamentWinners, TournamentWinnerEntity tournament) {
-		TournamentWinner tw = new TournamentWinner(tournament.getDescriptionShort());
+	private void addWinners(List<TournamentWinner> tournamentWinners, TournamentWinnerEntity tournament, List<TournamentAverageAllTippers> tournamentAverageAllTippersList) {
+		TournamentWinner tw = new TournamentWinner(tournament.getDescriptionShort());		
+		tw.setAverageAllTippers(getTournamentAverageAllTippers(tournament.getId(), tournamentAverageAllTippersList).getAverageAllTippers());
 		String winners = "";
 		int result = 0;
 		Double matchDayVictory = null;
@@ -49,6 +52,15 @@ public class TournamentWinnerBean implements ITournamentWinnerBean {
 		tw.setWinner(winners);
 		tournamentWinners.add(tw);
 	}	
+	
+	private TournamentAverageAllTippers getTournamentAverageAllTippers(int tournamentId, List<TournamentAverageAllTippers> tournamentAverageAllTippersList) {
+		for (TournamentAverageAllTippers tournamentAverageAllTippers : tournamentAverageAllTippersList) {
+			if(tournamentAverageAllTippers.getId() == tournamentId) {
+				return tournamentAverageAllTippers;
+			}
+		}
+		return null;
+	}
 
 	private String appendWinner(String winners, TournamentWinnerResultEntity tournamentWinnerResultEntity) {
 		if(!winners.isEmpty()) {

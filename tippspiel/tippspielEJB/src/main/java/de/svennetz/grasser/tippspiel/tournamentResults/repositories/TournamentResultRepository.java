@@ -21,7 +21,7 @@ public class TournamentResultRepository implements ITournamentResultRepository {
 				"SELECT r FROM TournamentResultEntity r ORDER BY r.tournamentId ASC, r.result DESC, matchDayVictory DESC");
 		return  entityManager.createQuery(statement, TournamentResultEntity.class).getResultList();
 	}
-
+	
 	@Override
 	public List<TournamentResultEntity> findAllByTournamentId(int tournamentId) {
 		String statement = String.format("SELECT r FROM TournamentResultEntity r where r.tournamentId=:tournamentId ORDER BY r.result DESC, matchDayVictory DESC");

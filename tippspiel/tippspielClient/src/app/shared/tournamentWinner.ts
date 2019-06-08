@@ -4,5 +4,6 @@ export class TournamentWinner {
       public winner: string,
       public result: number,
       public matchDayVictory: number,
+      public averageAllTipprs: number,
     ) { }
   }

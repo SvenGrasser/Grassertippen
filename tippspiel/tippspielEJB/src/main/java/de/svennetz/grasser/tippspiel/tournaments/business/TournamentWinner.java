@@ -5,7 +5,9 @@ public class TournamentWinner {
 	private String winner;
 	private int result;
 	private Double matchDayVictory;
+	private Double averageAllTippers;
 	
+
 	public TournamentWinner(String tournament) {
 		setTournament(tournament);
 	}
@@ -40,6 +42,14 @@ public class TournamentWinner {
 
 	public void setMatchDayVictory(Double matchDayVictory) {
 		this.matchDayVictory = matchDayVictory;
+	}
+	
+	public Double getAverageAllTippers() {
+		return averageAllTippers;
+	}
+
+	public void setAverageAllTippers(Double averageAllTippers) {
+		this.averageAllTippers = averageAllTippers;
 	}
 
 }
