@@ -1,5 +1,5 @@
 import { Observable } from "rxjs";
-import { MemberDetails } from "./MemberDetails";
+import { MemberDetails } from "./memberDetails";
 
 export class MemberSummary {
   constructor(

@@ -6,8 +6,7 @@
           <tr>
             <th class="text-left">Wettbewerb</th>
             <th class="text-center">Sieger</th>
-            <th class="text-center">Pkte.</th>
-            <th class="text-center">T-Siege</th>
+            <th class="text-center">Pkte. (T-Siege)</th>
             <th class="text-center">Durchschnitt</th>
           </tr>
         </thead>
@@ -15,8 +14,7 @@
           <tr *ngFor="let tournamentWinner of tournamentWinners | async">
             <td class="text-left">{{tournamentWinner.tournament}}</td>
             <td class="text-center">{{tournamentWinner.winner}}</td>
-            <td class="text-center">{{tournamentWinner.result}}</td>
-            <td class="text-center">{{tournamentWinner.matchDayVictory}}</td>
+            <td class="text-center">{{tournamentWinner.result}} ({{tournamentWinner.matchDayVictory}})</td>
             <td class="text-center">{{tournamentWinner.averageAllTippers | number:'1.2-2'}}</td>
           </tr>
         </tbody>
