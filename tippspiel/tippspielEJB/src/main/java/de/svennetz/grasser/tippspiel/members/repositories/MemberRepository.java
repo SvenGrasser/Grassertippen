@@ -15,14 +15,14 @@ public class MemberRepository implements IMemberRepository {
 	private EntityManager entityManager;	
 
 	@Override
-	public List<MemberEntity> readList() {
+	public List<MemberEntity> findAll() {
 		String statement = String.format("SELECT m FROM MemberEntity m");
 		TypedQuery<MemberEntity> query = entityManager.createQuery(statement, MemberEntity.class);
 		return query.getResultList();
 	}
 
 	@Override
-	public MemberEntity readItem(int id) {
+	public MemberEntity findById(int id) {
 		String statement = String.format("SELECT m FROM MemberEntity m where m.id = :id");
 		TypedQuery<MemberEntity> query = entityManager.createQuery(statement, MemberEntity.class);
 		query.setParameter("id", id);

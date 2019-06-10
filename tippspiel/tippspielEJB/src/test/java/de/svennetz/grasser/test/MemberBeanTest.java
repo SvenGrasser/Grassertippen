@@ -31,7 +31,7 @@ public class MemberBeanTest {
 
 	@Test
 	public void testGetMembers() {
-		Mockito.when(mockRepository.readList()).thenReturn(new ArrayList<MemberEntity>());
+		Mockito.when(mockRepository.findAll()).thenReturn(new ArrayList<MemberEntity>());
 
 		List<MemberEntity> members = memberBean.getMembers();
 		
@@ -41,7 +41,7 @@ public class MemberBeanTest {
 	
 	@Test
 	public void testGetMember() {
-		Mockito.when(mockRepository.readItem(1)).thenReturn(new MemberEntity());
+		Mockito.when(mockRepository.findById(1)).thenReturn(new MemberEntity());
 
 		MemberEntity member = memberBean.getMember(1);
 		

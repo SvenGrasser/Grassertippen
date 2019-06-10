@@ -20,12 +20,12 @@ public class MemberRepositoryStub implements IMemberRepository {
 	}
 
 	@Override
-	public List<MemberEntity> readList() {
+	public List<MemberEntity> findAll() {
 		return this.memberList;
 	}
 
 	@Override
-	public MemberEntity readItem(int id) {
+	public MemberEntity findById(int id) {
 		if(id < this.memberList.size()) {
 			return this.memberList.get(id);
 		}

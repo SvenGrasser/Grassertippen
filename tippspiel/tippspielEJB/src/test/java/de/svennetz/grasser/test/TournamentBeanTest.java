@@ -32,7 +32,7 @@ public class TournamentBeanTest {
 
 	@Test
 	public void testGetTournaments() {
-		Mockito.when(mockRepository.readList()).thenReturn(new ArrayList<TournamentEntity>());
+		Mockito.when(mockRepository.findAll()).thenReturn(new ArrayList<TournamentEntity>());
 
 		List<Tournament> tournaments = tournamentBean.getTournaments();
 		assertTrue(tournaments != null);

@@ -1,0 +1,9 @@
+#navBar {
+	border-color: lightgray!important;
+	border-style: solid!important;
+	border-radius: 5px;
+}
+
+#navItem {
+	margin: 0px 10px 0px 0px;
+}

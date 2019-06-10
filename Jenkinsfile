@@ -1,7 +1,7 @@
 #!groovy
 pipeline {
     agent any    
-    stages {
+    stages {	
         stage('Build') {
             steps {
                 withMaven()  {
@@ -13,7 +13,7 @@ pipeline {
             steps {
                 withMaven()  {
                     sh 'mvn test -f tippspiel/pom.xml'
-                }
+                }				
             }
         }
         stage('Deploy') {

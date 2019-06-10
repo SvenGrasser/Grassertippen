@@ -6,7 +6,6 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import de.svennetz.grasser.tippspiel.members.repositories.IMemberRepository;
 import de.svennetz.grasser.tippspiel.tournamentResults.entities.TournamentResultEntity;
 import de.svennetz.grasser.tippspiel.tournamentResults.repositories.ITournamentResultRepository;
 import de.svennetz.grasser.tippspiel.tournaments.entities.TournamentEntity;
@@ -15,8 +14,6 @@ import de.svennetz.grasser.tippspiel.tournaments.repositories.ITournamentReposit
 @Stateless
 public class MemberDetailsBean implements IMemberDetailsBean {
 	@EJB
-	private IMemberRepository memberRepository;
-	@EJB
 	private ITournamentRepository tournamentRepository;
 	@EJB
 	private ITournamentResultRepository tournamentResultRepository;
@@ -24,7 +21,7 @@ public class MemberDetailsBean implements IMemberDetailsBean {
 	@Override
 	public List<MemberDetails> getMemberDetails(int id) {
 		List<MemberDetails> detailsList = new ArrayList<MemberDetails>();
-		List<TournamentEntity> tournaments = tournamentRepository.readList();
+		List<TournamentEntity> tournaments = tournamentRepository.findAll();
 		List<Integer> tournamentIdList = new ArrayList<Integer>();
 		for(TournamentEntity tournament : tournaments) {
 			tournamentIdList.add(tournament.getId());
@@ -34,7 +31,7 @@ public class MemberDetailsBean implements IMemberDetailsBean {
 			detailsList.add(details);			
 		}
 			
-		List<TournamentResultEntity> tournamentResultList = tournamentResultRepository.readFilteredList(tournamentIdList, id);		
+		List<TournamentResultEntity> tournamentResultList = tournamentResultRepository.findAllByMemberAndTournaments(tournamentIdList, id);		
 		fillDetailsList(detailsList, tournamentResultList);		
 		return detailsList;
 	}
@@ -61,7 +58,7 @@ public class MemberDetailsBean implements IMemberDetailsBean {
 	}
 	
 	private Integer getTournamentPosition(int memberId, int tournamentId) {
-		List<TournamentResultEntity> result = tournamentResultRepository.readFilteredList(tournamentId, true);		
+		List<TournamentResultEntity> result = tournamentResultRepository.findAllByTournamentId(tournamentId);		
 		Integer position = null;
 		Integer positionGroup = 1;
 		Integer positionGroupCount = 0;

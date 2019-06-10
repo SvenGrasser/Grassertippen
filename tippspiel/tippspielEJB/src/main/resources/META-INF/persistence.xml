@@ -4,6 +4,8 @@
 		<class>de.svennetz.grasser.tippspiel.members.entities.MemberEntity</class>
 		<class>de.svennetz.grasser.tippspiel.tournaments.entities.TournamentEntity</class>
 		<class>de.svennetz.grasser.tippspiel.tournamentResults.entities.TournamentResultEntity</class>
+		<class>de.svennetz.grasser.tippspiel.tournaments.entities.TournamentWinnerEntity</class>
+		<class>de.svennetz.grasser.tippspiel.tournamentResults.entities.TournamentWinnerResultEntity</class>
 		<properties>
 			<!--<property name="hibernate.hbm2ddl.auto" value="create"/> -->
 			<property name="hibernate.show_sql" value="true" />

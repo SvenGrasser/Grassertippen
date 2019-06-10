@@ -9,13 +9,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import de.svennetz.grasser.tippspiel.base.ResourceBase;
 import de.svennetz.grasser.tippspiel.tournaments.business.ITournamentBean;
 import de.svennetz.grasser.tippspiel.tournaments.business.Tournament;
 
 
 @Path("tournaments")
 @Stateless
-public class TournamentResource {
+public class TournamentResource extends ResourceBase {
 	
 	@EJB
 	private ITournamentBean tournamentBean;
@@ -25,5 +26,4 @@ public class TournamentResource {
 	public List<Tournament> getTournamentList() {		
 		return tournamentBean.getTournaments();
 	}
-
 }
