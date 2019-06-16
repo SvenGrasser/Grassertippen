@@ -29,7 +29,7 @@
             "source": {
               "fileReplacements": [
                 {
-                  "replace": "src/undefined",
+                  "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.ts"
                 }
               ]
@@ -37,7 +37,7 @@
             "dev": {
               "fileReplacements": [
                 {
-                  "replace": "src/undefined",
+                  "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.ts"
                 }
               ]
@@ -54,7 +54,7 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/undefined",
+                  "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
                 }
               ]
